@@ -14,10 +14,54 @@
     <link rel="stylesheet" href="../src/assets/css/master.css">
   </head> <!-- /head -->
 
+
+  <header>
+  </header>
+
   <body>
     <!-- Wrapper
     ================================================ -->
     <div id="wrapper">
+
+      <!-- Sticky Navbar
+      ============================================== -->
+      <div id="sticky-nav" class="fixed-top">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+          <a class="navbar-brand" href="#">TSE</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item active">
+                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Dropdown
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="#">Action</a>
+                  <a class="dropdown-item" href="#">Another action</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link disabled" href="#">Disabled</a>
+              </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+              <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+          </div>
+        </nav>
+      </div> <!-- /.sticky-top -->
 
       <!-- Fullscreen Hero
       ============================================== -->
@@ -34,7 +78,7 @@
 
       <!-- Featurette Section #1
       ============================================== -->
-      <section class="hero">
+      <section id="first-hero-feature" class="hero">
         <div class="hero-bg first-highlight">
           <div class="hero-container">
             <div class="hero-content">
@@ -43,6 +87,8 @@
           </div>
         </div>
       </section> <!-- /#hero -->
+
+      <div id="body-breakpoint"></div>
 
       <!-- Highlight Carousel
       ============================================== -->
@@ -343,6 +389,8 @@
         <div class="separator separator-transparent"></div>
       </section> <!-- /#detail-section -->
 
+      <div id="footer-breakpoint"></div>
+
       <!-- Affiliates Section
       ============================================== -->
       <section id="affiliates-section">
@@ -439,6 +487,41 @@
     </script>
     <script type="text/javascript">
       window.onload = function() {
+        /* navbar appears on scroll */
+        $( window ).on( 'scroll', function() {
+          const nav = $( '#sticky-nav' )
+          let scrollY = window.pageYOffset
+          let bkpBody = $( '#body-breakpoint' ).offset().top
+          let bkpFooter = $( '#footer-breakpoint' ).offset().top
+          let navState = nav.css( 'display' )
+
+
+          /* if we scroll to before the nav breakpoint... */
+          if( ( scrollY <= bkpBody ) || ( scrollY > bkpFooter ) ) {
+            /* if the nav is shown... */
+            if( navState !== 'none' ) {
+              nav.fadeOut()
+            }
+          }
+
+          /* if we scroll past the nav breakpoint... */
+          else {
+            /* if the nav is hidden... */
+            if( navState === 'none' ) {
+              nav.fadeIn()
+            }
+          }
+
+          // DEBUG
+          console.log(`
+            Window position: ${ scrollY }
+            Body breakpoint: ${ bkpBody }
+            Footer breakpoint: ${ bkpFooter }
+            Navbar state: ${ navState }
+          `)
+        } )
+
+        /* test carousel fancy code */
         const s = $( `#widescreen` )
         const highlight = function( color ) {
           s.css( 'background-color', color )
