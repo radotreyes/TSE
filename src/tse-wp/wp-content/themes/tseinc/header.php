@@ -16,7 +16,6 @@
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="profile" href="http://gmpg.org/xfn/11">
-
 	<?php wp_head(); ?>
 </head>
 
@@ -24,33 +23,42 @@
 <div id="page" class="site">
 	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'tseinc' ); ?></a>
 
+	<!-- Header
+	============================================== -->
 	<header id="masthead" class="site-header">
-		<div class="site-branding">
-			<?php
-			the_custom_logo();
-			if ( is_front_page() && is_home() ) : ?>
-				<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-			<?php else : ?>
-				<p class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
-			<?php
-			endif;
+		<!-- Sticky Navbar
+		============================================== -->
+		<div id="sticky-nav" class="fixed-top navbar-wrapper">
+			<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+				<a class="navbar-brand" href="#">TSE</a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navToggle" aria-controls="navToggle" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
 
-			$description = get_bloginfo( 'description', 'display' );
-			if ( $description || is_customize_preview() ) : ?>
-				<p class="site-description"><?php echo $description; /* WPCS: xss ok. */ ?></p>
-			<?php
-			endif; ?>
-		</div><!-- .site-branding -->
+				<?php
+				/**
+				 * GENERATES:
+				 *
+				 * <div class="collapse navbar-collapse" id="navToggle">
+				 * 	<ul id="menu-main-menu" class="navbar-nav mr-auto">
+				 * 	</ul>
+				 * </div>
+				 *
+				 */
 
-		<nav id="site-navigation" class="main-navigation">
-			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'tseinc' ); ?></button>
-			<?php
-				wp_nav_menu( array(
-					'theme_location' => 'menu-1',
-					'menu_id'        => 'primary-menu',
-				) );
-			?>
-		</nav><!-- #site-navigation -->
+					wp_nav_menu( array(
+						'theme_location'	=> 'primary',
+						'container'				=> 'div',
+						'container_id'		=> 'navToggle',
+						'container_class'	=> 'collapse navbar-collapse',
+						'menu'						=> 'Main Menu',
+						'menu_class'			=> 'navbar-nav mr-auto'
+					) )
+				?>
+<!--
+ /.navbar-collapse -->
+			</nav> <!-- /.navbar -->
+		</div> <!-- /.navbar-wrapper -->
 	</header><!-- #masthead -->
 
 	<div id="content" class="site-content">

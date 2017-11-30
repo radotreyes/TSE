@@ -2,8 +2,6 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title></title>
-
     <!-- FontAwesome Icons -->
     <link rel="../src/assets/css/font-awesome.min.css">
 
@@ -487,14 +485,16 @@
     </script>
     <script type="text/javascript">
       window.onload = function() {
-        /* navbar appears on scroll */
+        /**
+         * Simple sticky navbar script.
+         * @file   ../src/assets/js/stickyNav.js
+         */
         $( window ).on( 'scroll', function() {
           const nav = $( '#sticky-nav' )
           let scrollY = window.pageYOffset
           let bkpBody = $( '#body-breakpoint' ).offset().top
           let bkpFooter = $( '#footer-breakpoint' ).offset().top
           let navState = nav.css( 'display' )
-
 
           /* if we scroll to before the nav breakpoint... */
           if( ( scrollY <= bkpBody ) || ( scrollY > bkpFooter ) ) {

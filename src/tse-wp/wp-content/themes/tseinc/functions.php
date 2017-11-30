@@ -117,17 +117,82 @@ add_action( 'widgets_init', 'tseinc_widgets_init' );
  * Enqueue scripts and styles.
  */
 function tseinc_scripts() {
+	/* ASSETS FOLDER LOCATION */
+	$assets_dir = get_stylesheet_directory_uri() . '/assets';
+
+	/* CSS */
+	// default stylesheet
 	wp_enqueue_style( 'tseinc-style', get_stylesheet_uri() );
 
+	// master.css
+	wp_enqueue_style(
+		'master',
+		$assets_dir . '/css/master.css',
+		false,
+		'1.0',
+		'all'
+	);
+
+	// FontAwesome
+	wp_enqueue_style( 'font-awesome.min', $assets_dir . '/css/font-awesome.min.css' );
+
+	// Bootstrap 4
+	wp_enqueue_style( 'bootstrap.min', $assets_dir . '/css/bootstrap.min.css');
+
+	/* SCRIPTS */
+	// default navigation template
 	wp_enqueue_script( 'tseinc-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
 
+	// default skip-link focus fix
 	wp_enqueue_script( 'tseinc-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20151215', true );
+
+	// jQuery 3.2.1
+	wp_enqueue_script(
+		'jquery-3.2.1.min',
+		 get_template_directory_uri() . '/js/jquery-3.2.1.min.js',
+		 false,
+		 '3.2.1',
+		 true
+	);
+
+	// Popper
+	wp_enqueue_script(
+		'popper.min',
+		get_template_directory_uri() . '/js/popper.min.js',
+		false,
+		false,
+		true
+	);
+
+	// Bootstrap 4 JS
+	wp_enqueue_script(
+		'bootstrap.min',
+		 get_template_directory_uri() . '/js/bootstrap.min.js',
+		 false,
+		 false,
+		 true
+	);
+
+	// custom page navigation
+	wp_enqueue_script(
+		'stickyNav',
+		 get_template_directory_uri() . '/js/stickyNav.js',
+		 false,
+		 '1.0',
+		 true
+	);
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
 }
 add_action( 'wp_enqueue_scripts', 'tseinc_scripts' );
+
+/* DEBUG: Remove admin toolbar */
+// add_filter( 'show_admin_bar', '__return_false' );
+
+/* DEBUG: Remove ob_end_flush notice */
+remove_action( 'shutdown', 'wp_ob_end_flush_all', 1 );
 
 /**
  * Implement the Custom Header feature.
@@ -155,4 +220,3 @@ require get_template_directory() . '/inc/customizer.php';
 if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
-
