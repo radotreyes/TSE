@@ -188,6 +188,12 @@ function tseinc_scripts() {
 }
 add_action( 'wp_enqueue_scripts', 'tseinc_scripts' );
 
+/* fix navbar links */
+add_filter( 'nav_menu_link_attributes', function( $atts ) {
+	$atts['class'] = "nav-link";
+	return $atts;
+}, 100, 1 );
+
 /* DEBUG: Remove admin toolbar */
 // add_filter( 'show_admin_bar', '__return_false' );
 

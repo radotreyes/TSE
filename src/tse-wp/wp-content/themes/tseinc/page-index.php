@@ -5,6 +5,23 @@
 
 get_header(); ?>
 
+<!-- Dynamic CSS
+================================================ -->
+<style id="dynamicCSS" media="screen">
+	<?php
+		if( get_field( 'home_use_parallax' ) ) {
+			echo (
+				'.hero-bg {   background-attachment: fixed;		}'
+			);
+		}
+	?>
+
+	#fullscreenHero .hero-bg {
+		background-color: <?php the_field( 'fullscreen_hero_bg_color' ) ?>;
+		background-image: url( <?php the_field( 'fullscreen_hero_bg' ) ?> );
+	}
+</style> <!-- /#dynamicCSS -->
+
 	<div id="primary" class="content-area">
 		<main id="main" class="site-main">
 
@@ -14,30 +31,173 @@ get_header(); ?>
 
 				<!-- Fullscreen Hero
 				============================================== -->
-				<div id="hero" class="fullscreen-hero">
+				<div id="fullscreenHero" class="fullscreen-hero">
 					<div class="hero-bg">
 						<div class="hero-container">
 							<div class="hero-content">
-								<h1 class="display-1"><strong>tse</strong></h1>
-								<p class="lead">Transit Systems Engineering, inc.</p>
+								<h1 class="marquee">
+									<div class="marquee-wrapper">
+										<?php
+											if( get_field( 'fullscreen_hero_use_logo' ) ) {
+												echo(
+														'<img src="' . get_field( 'fullscreen_hero_logo' ) . '">'
+												);
+											}
+											else {
+												echo(
+														'<h1 class="marquee">' . get_field( 'fullscreen_hero_text' ) . '</h1>'
+												);
+											}
+										?>
+									</div>
+								</h1>
+								<p class="lead"><?php the_field( 'fullscreen_hero_tagline' );?></p>
 							</div> <!-- /.hero-content -->
 						</div> <!-- /.hero-container -->
 					</div> <!-- /.hero-bg -->
 				</div> <!-- /#hero .fullscreen-hero -->
 
-				<!-- Featurette Section #1
+				<!-- What We Do Section
 				============================================== -->
-				<section id="first-hero-feature" class="hero">
-					<div class="hero-bg first-highlight">
-						<div class="hero-container">
-							<div class="hero-content">
-								<h1 class="display-2">[descriptive highlight]</h1>
+				<section id="overview">
+					<div class="subsection section-header">
+						<div class="container">
+							<div class="row">
+								<div class="col-12">
+									<h1 class="section-title display-4"><?php the_field( 'overview_section_title' ); ?></h1>
+								</div>
 							</div>
 						</div>
 					</div>
-				</section> <!-- /#hero -->
 
-				<div id="body-breakpoint"></div>
+					<div class="subsection section-body">
+						<div class="container">
+							<div class="row">
+								<div class="col-12 col-sm-12 col-md-4">
+									<div class="info">
+										<div class="info-box-title">
+											<div class="info-title info-title-primary">
+												<h2><?php the_field( 'overview_title_1' ); ?></h2>
+											</div>
+										</div> <!-- .info-box-title -->
+
+										<div class="info-box-content">
+											<p><?php the_field( 'overview_detail_1' ); ?></p>
+										</div> <!-- /.info-box-content -->
+									</div>
+								</div>
+
+								<div class="col-12 col-sm-6 col-md-4">
+									<div class="info">
+										<div class="info-box-title">
+											<div class="info-title info-title-secondary">
+												<h2><?php the_field( 'overview_title_2' ); ?></h2>
+											</div>
+										</div> <!-- .info-box-title -->
+										<div class="info-box-content">
+											<p><?php the_field( 'overview_detail_2' ); ?></p>
+										</div> <!-- .info-box-content -->
+									</div>
+								</div>
+
+								<div class="col-12 col-sm-6 col-md-4">
+									<div class="info">
+										<div class="info-box-title">
+											<div class="info-title info-title-tertiary">
+												<h2><?php the_field( 'overview_title_3' ); ?></h2>
+											</div>
+										</div> <!-- .info-box-title -->
+										<div class="info-box-content">
+											<p><?php the_field( 'overview_detail_3' ); ?></p>
+										</div> <!-- .info-box-content -->
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="subsection section-footer">
+						<div class="row">
+							<div class="col-12">
+								<a href="<?php the_field( 'overview_button_link' ); ?>">
+									<button type="button" class="btn btn-dark" name="button">
+										<?php the_field( 'overview_button_detail' ); ?>
+									</button>
+								</a>
+							</div>
+						</div>
+					</div>
+
+					<div class="separator separator-transparent"></div>
+				</section> <!-- #second-section -->
+
+				<!-- Featurette Section #1
+				============================================== -->
+				<section class="featurette">
+					<div class="subsection section-header">
+						<div class="container">
+							<div class="row">
+								<div class="col-12">
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="subsection section-body">
+						<div class="container">
+							<div class="row">
+								<div class="col-12 col-md-5">
+									<div class="featurette-graphic component-fade">
+
+										<div class="subsection subsection-sm section-header mobile-only">
+											<h1>BART</h1>
+											<h4>Warm Springs Extension</h4>
+											<h4><small class="text-muted">San Francisco Bay Area</small></h4>
+										</div>
+
+										<div class="graphic-box-title graphic-yellow">
+											<h1>a</h1>
+										</div> <!-- .info-box-title -->
+
+										<div class="subsection subsection-sm section-body mobile-only">
+											<p>Eam stet veli t honestatis in, sumo corrumpit ei sit, in mea malis accusam deserunt. Vix civibus corpora patrioque in. Aeque omittam cum ea. Ne labitur equidem nec. Per id summo graeci expetendis.</p>
+										</div>
+
+										<div class="subsection subsection-sm section-footer mobile-only">
+											<button type="button" class="btn btn-dark" name="button">Learn More</button>
+										</div>
+
+										<div class="subsection subsection-left subsection-sm section-footer"></div>
+
+										<div class="graphic-box-content">
+											<p class="lead">something cool</p>
+										</div> <!-- /.info-box-content -->
+									</div>
+								</div>
+
+								<div class="col-12 col-md-7">
+									<div class="featurette-detail">
+										<div class="subsection subsection-left subsection-sm section-header">
+											<h1>BART</h1>
+											<h4>Warm Springs Extension</h4>
+											<h4><small class="text-muted">San Francisco Bay Area</small></h4>
+										</div>
+
+										<div class="subsection subsection-left subsection-sm section-body">
+											<p>Eam stet veli t honestatis in, sumo corrumpit ei sit, in mea malis accusam deserunt. Vix civibus corpora patrioque in. Aeque omittam cum ea. Ne labitur equidem nec. Per id summo graeci expetendis.</p>
+										</div>
+
+										<div class="subsection subsection-left subsection-sm section-footer"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="subsection section-footer"></div>
+				</section> <!-- #detail-section -->
+
+				<div class="separator separator-transparent"></div>
 
 				<!-- Highlight Carousel
 				============================================== -->
@@ -48,19 +208,19 @@ get_header(); ?>
 								<div class="row">
 									<div class="col-4 col-sm-4 col-md-12">
 										<div id="tab-1" class="tab">
-											<h1 class="display-4">Power</h1>
+											<h1 class="lead">Power</h1>
 										</div>
 									</div>
 
 									<div class="col-4 col-sm-4 col-md-12">
 										<div id="tab-2" class="tab">
-											<h1 class="display-4">Controls</h1>
+											<h1 class="lead">Controls</h1>
 										</div>
 									</div>
 
 									<div class="col-4 col-sm-4 col-md-12">
 										<div id="tab-3" class="tab">
-											<h1 class="display-4">Communications</h1>
+											<h1 class="lead">Communications</h1>
 										</div>
 									</div>
 								</div> <!-- /.row (nested 1) -->
@@ -70,79 +230,13 @@ get_header(); ?>
 							<div class="col-sm-12 col-md-9">
 								<div class="widescreen-wrapper">
 									<div id="widescreen" class="widescreen">
-										<h1 class="display-4">hover over categories to change this slideshow</h1>
+										<h1 class="display-5">hover over categories to change this slideshow</h1>
 									</div>
 								</div>
 							</div>
 
 					</div> <!-- /.row (outer) -->
 				</section> <!-- #hoverCarousel -->
-
-				<!-- What We Do Section
-				============================================== -->
-				<section id="overview">
-					<div class="container">
-						<div class="row">
-							<div class="col-12">
-								<br>
-								<h1 class="display-4"><?php the_field( 'overview_section_title' ); ?></h1>
-								<br>
-							</div>
-							<div class="col-12 col-sm-12 col-md-4">
-								<div class="info">
-									<div class="info-box-title">
-										<div class="info-title info-title-primary">
-											<h1><?php the_field( 'overview_title_1' ); ?></h1>
-										</div>
-									</div> <!-- .info-box-title -->
-
-									<div class="info-box-content">
-										<p><?php the_field( 'overview_detail_1' ); ?></p>
-									</div> <!-- /.info-box-content -->
-								</div>
-							</div>
-
-							<div class="col-12 col-sm-6 col-md-4">
-								<div class="info">
-									<div class="info-box-title">
-										<div class="info-title info-title-secondary">
-											<h1><?php the_field( 'overview_title_2' ); ?></h1>
-										</div>
-									</div> <!-- .info-box-title -->
-									<div class="info-box-content">
-										<p><?php the_field( 'overview_detail_2' ); ?></p>
-									</div> <!-- .info-box-content -->
-								</div>
-							</div>
-
-							<div class="col-12 col-sm-6 col-md-4">
-								<div class="info">
-									<div class="info-box-title">
-										<div class="info-title info-title-tertiary">
-											<h1><?php the_field( 'overview_title_3' ); ?></h1>
-										</div>
-									</div> <!-- .info-box-title -->
-									<div class="info-box-content">
-										<p><?php the_field( 'overview_detail_3' ); ?></p>
-									</div> <!-- .info-box-content -->
-								</div>
-						</div>
-
-						<div class="col-12">
-							<div class="section-footer">
-								<div class="section-footer-content">
-									<a href="<?php the_field( 'overview_button_link' ); ?>">
-										<button type="button" class="btn btn-dark" name="button">
-											<?php the_field( 'overview_button_detail' ); ?>
-										</button>
-									</a>
-								</div> <!-- /.info-box-footer-> -->
-							</div>
-						</div>
-					</div>
-
-					<div class="separator separator-transparent"></div>
-				</section> <!-- #second-section -->
 
 				<!-- Featurette Section #2
 				============================================== -->
@@ -159,166 +253,179 @@ get_header(); ?>
 					</div>
 				</section> <!-- /#hero -->
 
-				<!-- Project Highlights Section
+				<!-- Featurette Section #1
 				============================================== -->
-				<section id="detail-section-title">
-					<div class="container">
-						<div class="row">
-							<div class="col-12">
-								<br>
-								<h1 class="display-4">Our Solutions</h1>
-								<br>
-							</div>
-						</div>
-					</div>
-				</section>
-
-				<section id="detail-section">
-					<div class="container">
-						<div class="row">
-							<div class="col-12 col-md-5">
-								<div class="graphic component-fade">
-									<div class="nested-detail-title">
-										<h1>BART</h1>
-										<h4>Warm Springs Extension</h4>
-										<h4><small class="text-muted">San Francisco Bay Area</small></h4>
-									</div>
-									<div class="graphic-box-title graphic-cyan">
-										<h1>a</h1>
-									</div> <!-- .info-box-title -->
-
-									<div class="graphic-box-content">
-										<p class="lead">something cool</p>
-									</div> <!-- /.info-box-content -->
-
-									<div class="nested-detail-content">
-										<p>Eam stet velit honestatis in, sumo corrumpit ei sit, in mea malis accusam deserunt. Vix civibus corpora patrioque in. Aeque omittam cum ea. Ne labitur equidem nec. Per id summo graeci expetendis.</p>
-									</div>
-
-									<div class="nested-detail-footer">
-										<button type="button" class="btn btn-dark" name="button">Learn More</button>
-									</div>
-								</div>
-							</div>
-
-							<div class="col-12 col-md-7">
-								<div class="detail detail-right">
-									<div class="detail-box-title">
-										<h1>BART</h1>
-										<h4>Warm Springs Extension</h4>
-										<h4><small class="text-muted">San Francisco Bay Area</small></h4>
-									</div> <!-- .info-box-title -->
-									<div class="detail-box-content">
-										<p>Eam stet velit honestatis in, sumo corrumpit ei sit, in mea malis accusam deserunt. Vix civibus corpora patrioque in. Aeque omittam cum ea. Ne labitur equidem nec. Per id summo graeci expetendis.</p>
-									</div> <!-- .info-box-content -->
-
-									<div class="detail-box-footer">
-										<button type="button" class="btn btn-dark" name="button">Learn More</button>
-									</div> <!-- /.info-box-footer-> -->
+				<section class="featurette">
+					<div class="subsection section-header">
+						<div class="container">
+							<div class="row">
+								<div class="col-12">
+									<h1 class="section-title display-4">Our Solutions</h1>
 								</div>
 							</div>
 						</div>
 					</div>
+
+					<div class="subsection section-body">
+						<div class="container">
+							<div class="row">
+								<div class="col-12 col-md-5">
+									<div class="featurette-graphic component-fade">
+										<div class="subsection subsection-sm section-header mobile-only">
+											<h1>BART</h1>
+											<h4>Warm Springs Extension</h4>
+											<h4><small class="text-muted">San Francisco Bay Area</small></h4>
+										</div>
+
+										<div class="graphic-box-title graphic-cyan">
+											<h1>a</h1>
+										</div> <!-- .info-box-title -->
+
+										<div class="subsection subsection-sm section-body mobile-only">
+											<p>Eam stet veli t honestatis in, sumo corrumpit ei sit, in mea malis accusam deserunt. Vix civibus corpora patrioque in. Aeque omittam cum ea. Ne labitur equidem nec. Per id summo graeci expetendis.</p>
+										</div>
+
+										<div class="subsection subsection-sm section-footer mobile-only">
+											<button type="button" class="btn btn-dark" name="button">Learn More</button>
+										</div>
+
+										<div class="subsection subsection-left subsection-sm section-footer"></div>
+
+										<div class="graphic-box-content mobile-hide">
+											<p class="lead">something cool</p>
+										</div> <!-- /.info-box-content -->
+									</div>
+								</div>
+
+								<div class="col-12 col-md-7 mobile-hide">
+									<div class="featurette-detail">
+										<div class="subsection subsection-left subsection-sm section-header">
+											<h1>BART</h1>
+											<h4>Warm Springs Extension</h4>
+											<h4><small class="text-muted">San Francisco Bay Area</small></h4>
+										</div>
+
+										<div class="subsection subsection-left subsection-sm section-body">
+											<p>Eam stet veli t honestatis in, sumo corrumpit ei sit, in mea malis accusam deserunt. Vix civibus corpora patrioque in. Aeque omittam cum ea. Ne labitur equidem nec. Per id summo graeci expetendis.</p>
+										</div>
+
+										<div class="subsection subsection-sm section-footer">
+											<button type="button" class="btn btn-dark" name="button">Learn More</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="subsection section-body">
+						<div class="container">
+							<div class="row">
+								<div class="col-12 col-md-5 order-md-2">
+									<div class="featurette-graphic component-fade">
+										<div class="subsection subsection-sm section-header mobile-only">
+											<h1>BART</h1>
+											<h4>Warm Springs Extension</h4>
+											<h4><small class="text-muted">San Francisco Bay Area</small></h4>
+										</div>
+
+										<div class="graphic-box-title graphic-yellow">
+											<h1>a</h1>
+										</div> <!-- .info-box-title -->
+
+										<div class="subsection subsection-sm section-body mobile-only">
+											<p>Eam stet veli t honestatis in, sumo corrumpit ei sit, in mea malis accusam deserunt. Vix civibus corpora patrioque in. Aeque omittam cum ea. Ne labitur equidem nec. Per id summo graeci expetendis.</p>
+										</div>
+
+										<div class="subsection subsection-sm section-footer mobile-only">
+											<button type="button" class="btn btn-dark" name="button">Learn More</button>
+										</div>
+
+										<div class="subsection subsection-sm section-footer"></div>
+
+										<div class="graphic-box-content mobile-hide">
+											<p class="lead">something cool</p>
+										</div> <!-- /.info-box-content -->
+									</div>
+								</div>
+
+								<div class="col-12 col-md-7 order-md-1 mobile-hide">
+									<div class="featurette-detail">
+										<div class="subsection subsection-right subsection-sm section-header">
+											<h1>BART</h1>
+											<h4>Warm Springs Extension</h4>
+											<h4><small class="text-muted">San Francisco Bay Area</small></h4>
+										</div>
+
+										<div class="subsection subsection-right subsection-sm section-body">
+											<p>Eam stet veli t honestatis in, sumo corrumpit ei sit, in mea malis accusam deserunt. Vix civibus corpora patrioque in. Aeque omittam cum ea. Ne labitur equidem nec. Per id summo graeci expetendis.</p>
+										</div>
+
+										<div class="subsection subsection-sm section-footer">
+											<button type="button" class="btn btn-dark" name="button">Learn More</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="subsection section-body">
+						<div class="container">
+							<div class="row">
+								<div class="col-12 col-md-5">
+									<div class="featurette-graphic component-fade">
+										<div class="subsection subsection-sm section-header mobile-only">
+											<h1>BART</h1>
+											<h4>Warm Springs Extension</h4>
+											<h4><small class="text-muted">San Francisco Bay Area</small></h4>
+										</div>
+
+										<div class="graphic-box-title graphic-magenta">
+											<h1>a</h1>
+										</div> <!-- .info-box-title -->
+
+										<div class="subsection subsection-sm section-body mobile-only">
+											<p>Eam stet veli t honestatis in, sumo corrumpit ei sit, in mea malis accusam deserunt. Vix civibus corpora patrioque in. Aeque omittam cum ea. Ne labitur equidem nec. Per id summo graeci expetendis.</p>
+										</div>
+
+										<div class="subsection subsection-sm section-footer mobile-only">
+											<button type="button" class="btn btn-dark" name="button">Learn More</button>
+										</div>
+
+										<div class="subsection subsection-left subsection-sm section-footer"></div>
+
+										<div class="graphic-box-content mobile-hide">
+											<p class="lead">something cool</p>
+										</div> <!-- /.info-box-content -->
+									</div>
+								</div>
+
+								<div class="col-12 col-md-7 mobile-hide">
+									<div class="featurette-detail">
+										<div class="subsection subsection-left subsection-sm section-header">
+											<h1>BART</h1>
+											<h4>Warm Springs Extension</h4>
+											<h4><small class="text-muted">San Francisco Bay Area</small></h4>
+										</div>
+
+										<div class="subsection subsection-left subsection-sm section-body">
+											<p>Eam stet veli t honestatis in, sumo corrumpit ei sit, in mea malis accusam deserunt. Vix civibus corpora patrioque in. Aeque omittam cum ea. Ne labitur equidem nec. Per id summo graeci expetendis.</p>
+										</div>
+
+										<div class="subsection subsection-sm section-footer">
+											<button type="button" class="btn btn-dark" name="button">Learn More</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="subsection section-footer"></div>
 				</section> <!-- #detail-section -->
 
-				<section id="detail-section" class="projects-section">
-					<div class="container">
-						<div class="row">
-							<div class="col-12 order-2 col-md-7 order-md-1">
-								<div class="detail detail-left">
-									<div class="detail-box-title">
-										<h1>SFMTA</h1>
-										<h4>Integrated HMI</h4>
-										<h4><small class="text-muted">San Francisco</small></h4>
-									</div> <!-- .info-box-title -->
-									<div class="detail-box-content">
-										<p>Nobis luptatum platonem sit ad, ius ex saperet luptatum, facer eirmod perfecto in est. An tantas impedit vivendo has. Per an zril disputando, regione corrumpit consequat ne vim. Mea soleat menandri an, mei conceptam inciderint an..</p>
-									</div> <!-- .info-box-content -->
-
-									<div class="detail-box-footer">
-										<button type="button" class="btn btn-dark" name="button">Learn More</button>
-									</div> <!-- /.info-box-footer-> -->
-								</div>
-							</div>
-
-							<div class="col-12 order-1 col-md-5 order-md-2">
-								<div class="graphic component-fade">
-									<div class="nested-detail-title">
-										<h1>SFMTA</h1>
-										<h4>Integrated HMI</h4>
-										<h4><small class="text-muted">San Francisco</small></h4>
-									</div>
-									<div class="graphic-box-title graphic-magenta">
-										<h1 class="header-4">a</h1>
-									</div> <!-- .info-box-title -->
-
-									<div class="graphic-box-content">
-										<p class="lead">something really cool</p>
-									</div> <!-- /.info-box-content -->
-
-									<div class="nested-detail-content">
-										<p>Eam stet velit honestatis in, sumo corrumpit ei sit, in mea malis accusam deserunt. Vix civibus corpora patrioque in. Aeque omittam cum ea. Ne labitur equidem nec. Per id summo graeci expetendis.</p>
-									</div>
-
-									<div class="nested-detail-footer">
-										<button type="button" class="btn btn-dark" name="button">Learn More</button>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</section> <!-- /#detail-section -->
-
-				<section id="detail-section">
-					<div class="container">
-						<div class="row">
-							<div class="col-12 col-md-5">
-								<div class="graphic component-fade">
-									<div class="nested-detail-title">
-										<h1>Sound Transit</h1>
-										<h4>University Link Light Rail</h4>
-										<h4><small class="text-muted">Seattle</small></h4>
-									</div>
-
-									<div class="graphic-box-title graphic-yellow">
-										<h1>a</h1>
-									</div> <!-- .info-box-title -->
-
-									<div class="graphic-box-content">
-										<p class="lead">i can't believe how cool this is</p>
-									</div> <!-- /.info-box-content -->
-
-									<div class="nested-detail-content">
-										<p>Eam stet velit honestatis in, sumo corrumpit ei sit, in mea malis accusam deserunt. Vix civibus corpora patrioque in. Aeque omittam cum ea. Ne labitur equidem nec. Per id summo graeci expetendis.</p>
-									</div>
-
-									<div class="nested-detail-footer">
-										<button type="button" class="btn btn-dark" name="button">Learn More</button>
-									</div>
-								</div>
-							</div>
-
-							<div class="col-12 col-md-7">
-								<div class="detail detail-right">
-									<div class="detail-box-title">
-										<h1>Sound Transit</h1>
-										<h4>University Link Light Rail</h4>
-										<h4><small class="text-muted">Seattle</small></h4>
-									</div> <!-- .info-box-title -->
-									<div class="detail-box-content">
-										<p>Eam stet velit honestatis in, sumo corrumpit ei sit, in mea malis accusam deserunt. Vix civibus corpora patrioque in. Aeque omittam cum ea. Ne labitur equidem nec. Per id summo graeci expetendis.</p>
-									</div> <!-- .info-box-content -->
-
-									<div class="detail-box-footer">
-										<button type="button" class="btn btn-dark" name="button">Learn More</button>
-									</div> <!-- /.info-box-footer-> -->
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<div class="separator separator-transparent"></div>
-				</section> <!-- /#detail-section -->
+				<div class="separator separator-transparent"></div>
 
 				<!-- Call to Action Section
 				============================================== -->
@@ -349,51 +456,19 @@ get_header(); ?>
 					<div class="separator separator-transparent"></div>
 				</section> <!-- /#detail-section -->
 
-				<div id="footer-breakpoint"></div>
-
-				<!-- Affiliates Section
+				<!-- Featurette Section #1
 				============================================== -->
-				<section id="affiliates-section">
-					<div class="container">
-						<div class="row">
-							<div class="col-6 col-md-4">
-								<div class="affiliate-logo">
-									<img src="http://www.tseinc.us/wp-content/uploads/2016/12/BC-Logo-300dpi-3x3in-Transparent.png" alt="">
-								</div>
-							</div>
-
-							<div class="col-6 col-md-4">
-								<div class="affiliate-logo">
-									<img src="http://www.tseinc.us/wp-content/uploads/2016/12/BART.png" alt="">
-								</div>
-							</div>
-
-							<div class="col-6 col-md-4">
-								<div class="affiliate-logo">
-									<img src="http://www.tseinc.us/wp-content/uploads/2016/12/sfmta.png" alt="">
-								</div>
-							</div>
-
-							<div class="col-6 col-md-4">
-								<div class="affiliate-logo">
-									<img src="http://www.tseinc.us/wp-content/uploads/2016/12/Chicago-CTA.png" alt="">
-								</div>
-							</div>
-
-							<div class="col-6 col-md-4">
-								<div class="affiliate-logo">
-									<img src="http://www.tseinc.us/wp-content/uploads/2016/12/LA-metro.png" alt="">
-								</div>
-							</div>
-
-							<div class="col-6 col-md-4">
-								<div class="affiliate-logo">
-									<img src="http://www.tseinc.us/wp-content/uploads/2016/12/NCTD.gif" alt="">
-								</div>
+				<section id="fullscreen-hero-closure" class="hero">
+					<div class="hero-bg fullscreen-hero-closure">
+						<div class="hero-container">
+							<div class="hero-content">
 							</div>
 						</div>
 					</div>
-				</section> <!-- /#affiliates-section -->
+				</section> <!-- /#fullscreen-hero-closure -->
 			</div> <!-- /#wrapper -->
+
+				<div id="footer-breakpoint"></div>
+
 <?php
 get_footer();

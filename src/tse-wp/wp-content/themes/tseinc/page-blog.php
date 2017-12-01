@@ -1,6 +1,6 @@
 <?php
 /*
-  Template Name: Blog Index
+ * Template Name: Blog Index
  */
 
 get_header(); ?>

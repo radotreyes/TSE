@@ -1,5 +1,6 @@
 /**
 -- INDEX --
+  # [0]   Fonts
   # [1]   Page Wrapper and Hero Components
   ## [1.1]  Page Wrapper
   ### [1.1.1]   Admin Bar Fix
@@ -16,6 +17,85 @@
   ## [X.2]  Hover Tabs
 */
 
+/* # [0] Fonts */
+@font-face {
+  font-family: 'Raleway';
+  src: url( '../fonts/Raleway/Raleway-Light.ttf' );
+}
+
+@font-face {
+  font-family: 'Raleway';
+  src: url( '../fonts/Raleway/Raleway-LightItalic.ttf' );
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Raleway';
+  src: url( '../fonts/Raleway/Raleway-Medium.ttf' );
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: 'Raleway';
+  src: url( '../fonts/Raleway/Raleway-MediumItalic.ttf' );
+  font-weight: bold;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'Raleway';
+  src: url( '../fonts/Raleway/Raleway-Medium.ttf' );
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url( '../fonts/Poppins/Poppins-Regular.ttf' );
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url( '../fonts/Poppins/Poppins-RegularItalic.ttf' );
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url( '../fonts/Poppins/Poppins-SemiBold.ttf' );
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url( '../fonts/Poppins/Poppins-SemiBoldItalic.ttf' );
+  font-weight: bold;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Righteous';
+  src: url( '../fonts/Righteous/Righteous-Regular.ttf' );
+}
+
+body {
+  font-family: 'Raleway', sans-serif !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Poppins', sans-serif !important;
+}
+
+[class^="display-"] {
+  font-family: 'Poppins', sans-serif !important;
+  font-weight: bold;
+}
+
+h1.marquee {
+  font-family: 'Righteous', cursive !important;
+  font-size: 5rem;
+
+  text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.75);
+}
+
 /* # [1] Page Wrapper and Hero Components */
 /* ## [1.1] Page Wrapper */
 #wrapper {
@@ -26,6 +106,20 @@
   min-width: 100%;
   max-width: 100%;
   color: white;
+}
+
+.mobile-hide {
+  display: none;
+}
+
+@media( min-width: 768px ) {
+  .mobile-hide {
+    display: block;
+  }
+
+  .mobile-only {
+    display: none;
+  }
 }
 
 /* ## [1.1.1] Admin Bar Fix */
@@ -86,16 +180,18 @@
   background: linear-gradient( to bottom, rgba(34, 58, 120, 0.5), rgba(255, 255, 255, 0.5) );
 }
 
+.marquee-wrapper {
+  max-width: 400px;
+  max-height: 200px;
+}
+
 /* ## [1.3] Hero Background */
 .hero-bg {
   height: inherit;
-  background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  background-color: #324dac;
-
-  background: linear-gradient( to bottom, rgba(34, 58, 120, 0.5), rgba(255, 255, 255, 0.5) );
+  background-color: #324dac; /* default bg color for all hero units */
 }
 
 /* ## [1.4] Hero Content */
@@ -108,6 +204,10 @@
   color: white;
 
   z-index: 10;
+}
+
+.hero-content .marquee {
+  color: white;
 }
 
 .hero-container {
@@ -123,7 +223,11 @@
 }
 
 .second-highlight {
-  background: linear-gradient( to left, rgba(34, 58, 120, 0.5), rgba(128, 128, 128, 0.5) );
+  background-image: url( '../media/sfo.jpg' );
+}
+
+.fullscreen-hero-closure {
+  background-image: url( '../media/sf.jpg' );
 }
 
 /* # [2] Section Tags */
@@ -203,12 +307,10 @@ section {
 #overview {
   color: #2F323A;
   text-align: center;
-
-  padding: 2em 0;
 }
 
 .info {
-  margin: 1em auto;
+  margin: 0 auto;
   padding: .5em
 }
 
@@ -242,7 +344,45 @@ section {
   margin: 0 0 2em;
 }
 
-#detail-section-title {
+.featurette {
+  background-color: #EEE;
+  color: #2F323A;
+  text-align: center;
+}
+
+.featurette-graphic {
+  background-color: #dbdbdb;
+  padding: 1.5em;
+  margin: 1.5em 0;
+  border-radius: 25px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+
+  /* position-relative vertical align */
+  position: relative;
+  top: 50%;
+  transform: translateY( -50% );
+}
+
+.featurette-detail {
+  padding: 1.5em .5em;
+
+  /* position-relative vertical align */
+  position: relative;
+  top: 50%;
+  transform: translateY( -50% );
+}
+
+@media( min-width: 768px ) {
+  .featurette-graphic {
+    margin: 0 auto;
+  }
+
+  .featurette-right .featurette-box-title, .featurette-right .featurette-box-content {
+    text-align: left;
+  }
+}
+
+.detail-section-header {
   background-color: #EEE;
   color: #2F323A;
   text-align: center;
@@ -250,13 +390,65 @@ section {
   padding: 0 1em;
 }
 
+.section-title {
+  padding: .5em 0 .5em;
+  margin: 0 auto;
+}
+
+.subsection-left {  text-align: left;  }
+.subsection-right {  text-align: right;  }
+
+[class^="subsection-"].section-header {
+  padding: 2em 0 0;
+}
+
+[class^="subsection-"].section-body {
+  padding: 1em 0 1em;
+}
+
+[class^="subsection-"].section-footer {
+  padding: 0em 0 2em;
+}
+
+[class^="subsection-"].subsection-sm.section-header {
+  padding: 1em 0 0;
+}
+
+[class^="subsection-"].subsection-sm.section-body {
+  padding: .5em 0 .5em;
+}
+
+[class^="subsection-"].subsection-sm.section-footer {
+  padding: 0em 0 1em;
+}
+
 @media( min-width: 768px ) {
-  #detail-section-title {
+  .subsection.section-header {
+    padding: 3em 0 0;
+  }
+
+  .subsection.section-body {
+    padding: 1.5em 0 1.5em;
+  }
+
+  .subsection.section-footer {
+    padding: 0 0 3em;
+  }
+
+  .subsection.subsection-sm.section-header {
     padding: 1.5em 0 0;
+  }
+
+  .subsection.subsection-sm.section-body {
+    padding: .75em 0 .75em;
+  }
+
+  .subsection.subsection-sm.section-footer {
+    padding: 0em 0 1.5em;
   }
 }
 
-#detail-section {
+.detail-section {
   background-color: #EEE;
   color: #2F323A;
   text-align: center;
@@ -265,7 +457,7 @@ section {
 }
 
 @media( min-width: 768px ) {
-  #detail-section {
+  .detail-section {
     padding: 1.5em 0 3em;
   }
 }
@@ -339,18 +531,10 @@ section {
   padding: 0 0 1em;
 }
 
-.nested-detail-content {
-  padding: 0 0 1em;
-}
-
 @media( min-width: 768px ) {
   .graphic-box-title {
     margin: 5em 2.5em;
     padding: 0 0 1em;
-  }
-
-  .nested-detail-title, .nested-detail-content, .nested-detail-footer {
-    display: none;
   }
 }
 

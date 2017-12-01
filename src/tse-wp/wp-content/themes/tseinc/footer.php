@@ -11,7 +11,49 @@
 
 ?>
 
-	</div><!-- #content -->
+	<!-- Affiliates Section
+	============================================== -->
+	<section id="affiliates-section">
+		<div class="container">
+			<div class="row">
+				<div class="col-6 col-md-4">
+					<div class="affiliate-logo">
+						<img src="http://www.tseinc.us/wp-content/uploads/2016/12/BC-Logo-300dpi-3x3in-Transparent.png" alt="">
+					</div>
+				</div>
+
+				<div class="col-6 col-md-4">
+					<div class="affiliate-logo">
+						<img src="http://www.tseinc.us/wp-content/uploads/2016/12/BART.png" alt="">
+					</div>
+				</div>
+
+				<div class="col-6 col-md-4">
+					<div class="affiliate-logo">
+						<img src="http://www.tseinc.us/wp-content/uploads/2016/12/sfmta.png" alt="">
+					</div>
+				</div>
+
+				<div class="col-6 col-md-4">
+					<div class="affiliate-logo">
+						<img src="http://www.tseinc.us/wp-content/uploads/2016/12/Chicago-CTA.png" alt="">
+					</div>
+				</div>
+
+				<div class="col-6 col-md-4">
+					<div class="affiliate-logo">
+						<img src="http://www.tseinc.us/wp-content/uploads/2016/12/LA-metro.png" alt="">
+					</div>
+				</div>
+
+				<div class="col-6 col-md-4">
+					<div class="affiliate-logo">
+						<img src="http://www.tseinc.us/wp-content/uploads/2016/12/NCTD.gif" alt="">
+					</div>
+				</div>
+			</div>
+		</div>
+	</section> <!-- /#affiliates-section -->
 
 	<!-- Footer
 	============================================== -->
