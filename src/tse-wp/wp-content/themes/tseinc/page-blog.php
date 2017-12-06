@@ -7,6 +7,7 @@ get_header(); ?>
 
 	<div id="primary" class="content-area">
 		<main id="main" class="site-main">
+			<h1 class="display-1">Blog (in progress)</h1>
 
 			<?php
 			while ( have_posts() ) : the_post();

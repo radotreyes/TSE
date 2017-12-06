@@ -226,3 +226,26 @@ require get_template_directory() . '/inc/customizer.php';
 if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
+
+/**
+ * Custom functions
+ */
+
+function get_dynamic_template_part( $args = null, $slug, $name = null ) {
+	include( locate_template(
+	 '/template-parts/'. $slug . '-'. $name . '.php',
+	 false,
+	 false
+	) );
+}
+
+/**
+ * Custom post/tax/etc. types (models)
+ */
+
+/* Model initialization hooks */
+include( 'classes/taxonomies.php' );
+include( 'classes/postTypes.php' );
+$clients = new Clients();
+$projects = new Projects();
+$key_people = new KeyPeople();

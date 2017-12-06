@@ -9,6 +9,7 @@ get_header(); ?>
 ================================================ -->
 <style id="dynamicCSS" media="screen">
 	<?php
+		$hero_bg = get_field( 'fullscreen_hero_bg' );
 		if( get_field( 'home_use_parallax' ) ) {
 			echo (
 				'.hero-bg {   background-attachment: fixed;		}'
@@ -17,8 +18,12 @@ get_header(); ?>
 	?>
 
 	#fullscreenHero .hero-bg {
-		background-color: <?php the_field( 'fullscreen_hero_bg_color' ) ?>;
-		background-image: url( <?php the_field( 'fullscreen_hero_bg' ) ?> );
+		background-color: <?php echo $hero_bg['color']; ?>;
+		background-image: url( <?php echo $hero_bg['image']; ?> );
+	}
+
+	#conclusion .hero-bg {
+		background-color: <?php the_field( 'conclusion_bg_color' ) ?>;
 	}
 </style> <!-- /#dynamicCSS -->
 
@@ -57,9 +62,12 @@ get_header(); ?>
 					</div> <!-- /.hero-bg -->
 				</div> <!-- /#hero .fullscreen-hero -->
 
+				<div id="body-breakpoint"></div>
+
 				<!-- What We Do Section
 				============================================== -->
 				<section id="overview">
+					<div class="separator separator-transparent"></div>
 					<div class="subsection section-header">
 						<div class="container">
 							<div class="row">
@@ -129,116 +137,71 @@ get_header(); ?>
 					</div>
 
 					<div class="separator separator-transparent"></div>
-				</section> <!-- #second-section -->
 
 				<!-- Featurette Section #1
 				============================================== -->
-				<section class="featurette">
-					<div class="subsection section-header">
-						<div class="container">
-							<div class="row">
-								<div class="col-12">
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<div class="subsection section-body">
-						<div class="container">
-							<div class="row">
-								<div class="col-12 col-md-5">
-									<div class="featurette-graphic component-fade">
-
-										<div class="subsection subsection-sm section-header mobile-only">
-											<h1>BART</h1>
-											<h4>Warm Springs Extension</h4>
-											<h4><small class="text-muted">San Francisco Bay Area</small></h4>
-										</div>
-
-										<div class="graphic-box-title graphic-yellow">
-											<h1>a</h1>
-										</div> <!-- .info-box-title -->
-
-										<div class="subsection subsection-sm section-body mobile-only">
-											<p>Eam stet veli t honestatis in, sumo corrumpit ei sit, in mea malis accusam deserunt. Vix civibus corpora patrioque in. Aeque omittam cum ea. Ne labitur equidem nec. Per id summo graeci expetendis.</p>
-										</div>
-
-										<div class="subsection subsection-sm section-footer mobile-only">
-											<button type="button" class="btn btn-dark" name="button">Learn More</button>
-										</div>
-
-										<div class="subsection subsection-left subsection-sm section-footer"></div>
-
-										<div class="graphic-box-content">
-											<p class="lead">something cool</p>
-										</div> <!-- /.info-box-content -->
-									</div>
-								</div>
-
-								<div class="col-12 col-md-7">
-									<div class="featurette-detail">
-										<div class="subsection subsection-left subsection-sm section-header">
-											<h1>BART</h1>
-											<h4>Warm Springs Extension</h4>
-											<h4><small class="text-muted">San Francisco Bay Area</small></h4>
-										</div>
-
-										<div class="subsection subsection-left subsection-sm section-body">
-											<p>Eam stet veli t honestatis in, sumo corrumpit ei sit, in mea malis accusam deserunt. Vix civibus corpora patrioque in. Aeque omittam cum ea. Ne labitur equidem nec. Per id summo graeci expetendis.</p>
-										</div>
-
-										<div class="subsection subsection-left subsection-sm section-footer"></div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<div class="subsection section-footer"></div>
-				</section> <!-- #detail-section -->
-
-				<div class="separator separator-transparent"></div>
+				<?php
+					$title = 'hello world';
+					get_dynamic_template_part(
+						array(
+							'title' => 'foo',
+						),
+						'section',
+						'featurette_right'
+					);
+				?>
 
 				<!-- Highlight Carousel
 				============================================== -->
 				<section id="hoverCarousel">
-					<div class="container-fluid">
-						<div class="row">
-							<div class="col-sm-12 col-md-3">
-								<div class="row">
-									<div class="col-4 col-sm-4 col-md-12">
-										<div id="tab-1" class="tab">
-											<h1 class="lead">Power</h1>
+						<div class="container-fluid">
+							<div class="row">
+								<div class="col-sm-12 col-md-3">
+									<div class="row">
+										<div class="col-4 col-sm-4 col-md-12">
+											<div id="tab-1" class="tab">
+												<h1 class="lead">Power</h1>
+											</div>
 										</div>
-									</div>
 
-									<div class="col-4 col-sm-4 col-md-12">
-										<div id="tab-2" class="tab">
-											<h1 class="lead">Controls</h1>
+										<div class="col-4 col-sm-4 col-md-12">
+											<div id="tab-2" class="tab">
+												<h1 class="lead">Controls</h1>
+											</div>
 										</div>
-									</div>
 
-									<div class="col-4 col-sm-4 col-md-12">
-										<div id="tab-3" class="tab">
-											<h1 class="lead">Communications</h1>
+										<div class="col-4 col-sm-4 col-md-12">
+											<div id="tab-3" class="tab">
+												<h1 class="lead">Communications</h1>
+											</div>
 										</div>
-									</div>
-								</div> <!-- /.row (nested 1) -->
+									</div> <!-- /.row (nested 1) -->
+								</div>
 
-							</div>
-
-							<div class="col-sm-12 col-md-9">
-								<div class="widescreen-wrapper">
-									<div id="widescreen" class="widescreen">
-										<h1 class="display-5">hover over categories to change this slideshow</h1>
+								<div class="col-sm-12 col-md-9">
+									<div class="widescreen-wrapper">
+										<div id="widescreen" class="widescreen">
+											<h1 class="display-5">hover over categories to change this slideshow</h1>
+										</div>
 									</div>
 								</div>
-							</div>
 
-					</div> <!-- /.row (outer) -->
-				</section> <!-- #hoverCarousel -->
+						</div> <!-- /.row (outer) -->
+					</div>
+			</section> <!-- #hoverCarousel -->
 
-				<!-- Featurette Section #2
+			<?php
+				$title = 'hello world';
+				get_dynamic_template_part(
+					array(
+						'title' => 'bar',
+					),
+					'section',
+					'featurette_left'
+				);
+			?>
+
+				<!-- Hero Section
 				============================================== -->
 				<section class="hero">
 					<div class="hero-bg second-highlight">
@@ -256,6 +219,7 @@ get_header(); ?>
 				<!-- Featurette Section #1
 				============================================== -->
 				<section class="featurette">
+					<div class="separator separator-transparent"></div>
 					<div class="subsection section-header">
 						<div class="container">
 							<div class="row">
@@ -266,195 +230,108 @@ get_header(); ?>
 						</div>
 					</div>
 
-					<div class="subsection section-body">
-						<div class="container">
-							<div class="row">
-								<div class="col-12 col-md-5">
-									<div class="featurette-graphic component-fade">
-										<div class="subsection subsection-sm section-header mobile-only">
-											<h1>BART</h1>
-											<h4>Warm Springs Extension</h4>
-											<h4><small class="text-muted">San Francisco Bay Area</small></h4>
-										</div>
+					<?php
+						/* ACF code goes here
+							if( have_rows( ... ) ) {
+								while( have_rows( ... ) ) {
+									// get the data associated with that row
+									// load each project in the format presented below
+								}
+							}
+						*/
+						$query_people = new WP_Query( array(
+							'post_type'				=> 'cpt_key_people'
+						) );
 
-										<div class="graphic-box-title graphic-cyan">
-											<h1>a</h1>
-										</div> <!-- .info-box-title -->
+						echo( $query_people->have_posts() );
+						if( $query_people->have_posts() ) {
+							while( $query_people->have_posts() ) {
+								$query_people->the_post();
+								the_title();
+							}
+						}
 
-										<div class="subsection subsection-sm section-body mobile-only">
-											<p>Eam stet veli t honestatis in, sumo corrumpit ei sit, in mea malis accusam deserunt. Vix civibus corpora patrioque in. Aeque omittam cum ea. Ne labitur equidem nec. Per id summo graeci expetendis.</p>
-										</div>
 
-										<div class="subsection subsection-sm section-footer mobile-only">
-											<button type="button" class="btn btn-dark" name="button">Learn More</button>
-										</div>
+						$query_projects = new WP_Query( array(
+							'post_type'				=> 'cpt_projects',
+							'posts_per_page'	=> '3',
+						) );
 
-										<div class="subsection subsection-left subsection-sm section-footer"></div>
 
-										<div class="graphic-box-content mobile-hide">
-											<p class="lead">something cool</p>
-										</div> <!-- /.info-box-content -->
-									</div>
-								</div>
+						/* Eventually remove this from a loop and allow ACF to dictate
+						 * exactly which projects to show, including some formatting */
 
-								<div class="col-12 col-md-7 mobile-hide">
-									<div class="featurette-detail">
-										<div class="subsection subsection-left subsection-sm section-header">
-											<h1>BART</h1>
-											<h4>Warm Springs Extension</h4>
-											<h4><small class="text-muted">San Francisco Bay Area</small></h4>
-										</div>
+						if( $query_projects->have_posts() ) {
+							while( $query_projects->have_posts() ) {
+								$query_projects->the_post();
+								/* querying for project details... */
+								// the_terms( get_the_ID(), 'cpt_clients' )['name'];
+                //
+								// the_ID();
+								// the_title();
+								// the_content();
+								// the_excerpt();
 
-										<div class="subsection subsection-left subsection-sm section-body">
-											<p>Eam stet veli t honestatis in, sumo corrumpit ei sit, in mea malis accusam deserunt. Vix civibus corpora patrioque in. Aeque omittam cum ea. Ne labitur equidem nec. Per id summo graeci expetendis.</p>
-										</div>
+								$terms = get_the_terms( get_the_ID(), 'cpt_clients' );
+								the_terms( get_the_ID(), 'cpt_clients' );
 
-										<div class="subsection subsection-sm section-footer">
-											<button type="button" class="btn btn-dark" name="button">Learn More</button>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
+								get_dynamic_template_part( array(
+										'subsection_align'	=> 'left',
+										'project_client'		=> implode( ', ', wp_list_pluck( $terms, 'name' ) ),
+										'project_title'			=> get_the_title(),
+										'project_loc'				=> get_field( 'project_location' ),
+										'project_desc'			=> get_the_excerpt()
+									),
+									'subsection',
+									'project'
+								);
+							}
+						}
 
-					<div class="subsection section-body">
-						<div class="container">
-							<div class="row">
-								<div class="col-12 col-md-5 order-md-2">
-									<div class="featurette-graphic component-fade">
-										<div class="subsection subsection-sm section-header mobile-only">
-											<h1>BART</h1>
-											<h4>Warm Springs Extension</h4>
-											<h4><small class="text-muted">San Francisco Bay Area</small></h4>
-										</div>
-
-										<div class="graphic-box-title graphic-yellow">
-											<h1>a</h1>
-										</div> <!-- .info-box-title -->
-
-										<div class="subsection subsection-sm section-body mobile-only">
-											<p>Eam stet veli t honestatis in, sumo corrumpit ei sit, in mea malis accusam deserunt. Vix civibus corpora patrioque in. Aeque omittam cum ea. Ne labitur equidem nec. Per id summo graeci expetendis.</p>
-										</div>
-
-										<div class="subsection subsection-sm section-footer mobile-only">
-											<button type="button" class="btn btn-dark" name="button">Learn More</button>
-										</div>
-
-										<div class="subsection subsection-sm section-footer"></div>
-
-										<div class="graphic-box-content mobile-hide">
-											<p class="lead">something cool</p>
-										</div> <!-- /.info-box-content -->
-									</div>
-								</div>
-
-								<div class="col-12 col-md-7 order-md-1 mobile-hide">
-									<div class="featurette-detail">
-										<div class="subsection subsection-right subsection-sm section-header">
-											<h1>BART</h1>
-											<h4>Warm Springs Extension</h4>
-											<h4><small class="text-muted">San Francisco Bay Area</small></h4>
-										</div>
-
-										<div class="subsection subsection-right subsection-sm section-body">
-											<p>Eam stet veli t honestatis in, sumo corrumpit ei sit, in mea malis accusam deserunt. Vix civibus corpora patrioque in. Aeque omittam cum ea. Ne labitur equidem nec. Per id summo graeci expetendis.</p>
-										</div>
-
-										<div class="subsection subsection-sm section-footer">
-											<button type="button" class="btn btn-dark" name="button">Learn More</button>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<div class="subsection section-body">
-						<div class="container">
-							<div class="row">
-								<div class="col-12 col-md-5">
-									<div class="featurette-graphic component-fade">
-										<div class="subsection subsection-sm section-header mobile-only">
-											<h1>BART</h1>
-											<h4>Warm Springs Extension</h4>
-											<h4><small class="text-muted">San Francisco Bay Area</small></h4>
-										</div>
-
-										<div class="graphic-box-title graphic-magenta">
-											<h1>a</h1>
-										</div> <!-- .info-box-title -->
-
-										<div class="subsection subsection-sm section-body mobile-only">
-											<p>Eam stet veli t honestatis in, sumo corrumpit ei sit, in mea malis accusam deserunt. Vix civibus corpora patrioque in. Aeque omittam cum ea. Ne labitur equidem nec. Per id summo graeci expetendis.</p>
-										</div>
-
-										<div class="subsection subsection-sm section-footer mobile-only">
-											<button type="button" class="btn btn-dark" name="button">Learn More</button>
-										</div>
-
-										<div class="subsection subsection-left subsection-sm section-footer"></div>
-
-										<div class="graphic-box-content mobile-hide">
-											<p class="lead">something cool</p>
-										</div> <!-- /.info-box-content -->
-									</div>
-								</div>
-
-								<div class="col-12 col-md-7 mobile-hide">
-									<div class="featurette-detail">
-										<div class="subsection subsection-left subsection-sm section-header">
-											<h1>BART</h1>
-											<h4>Warm Springs Extension</h4>
-											<h4><small class="text-muted">San Francisco Bay Area</small></h4>
-										</div>
-
-										<div class="subsection subsection-left subsection-sm section-body">
-											<p>Eam stet veli t honestatis in, sumo corrumpit ei sit, in mea malis accusam deserunt. Vix civibus corpora patrioque in. Aeque omittam cum ea. Ne labitur equidem nec. Per id summo graeci expetendis.</p>
-										</div>
-
-										<div class="subsection subsection-sm section-footer">
-											<button type="button" class="btn btn-dark" name="button">Learn More</button>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
+						/* using ACF relational field to get specific post data */
+					// 	if( get_field( 'project_displayed' ) ) {
+					// 		$post = get_field( 'project_displayed' );
+					// 	}
+          //
+					// 	$terms = get_the_terms( get_the_ID(), 'cpt_clients' );
+          //
+					// 	get_dynamic_template_part( array(
+					// 			'subsection_align'	=> 'left',
+					// 			'project_client'		=> implode( ', ', wp_list_pluck( $terms, 'name' ) ),
+					// 			'project_title'			=> get_the_title(),
+					// 			'project_loc'				=> get_field( 'project_location' ),
+					// 			'project_desc'			=> get_the_excerpt()
+					// 		),
+					// 		'subsection',
+					// 		'project'
+					// 	);
+					// ?>
 
 					<div class="subsection section-footer"></div>
+					<div class="separator separator-transparent"></div>
 				</section> <!-- #detail-section -->
-
-				<div class="separator separator-transparent"></div>
 
 				<!-- Call to Action Section
 				============================================== -->
-				<section id="concluding-section">
-					<div class="container">
-						<div class="row">
-							<div class="col-12">
-								<div class="info info-conclusion">
-									<div class="info-box-title">
-										<h1>Wrap-Up Section</h1>
-									</div> <!-- .info-box-title -->
-									<div class="info-box-content">
-										<p> Ea offendit contentiones his, alii reprehendunt ius id. Vim ne possim honestatis eloquentiam, eu has doming ancillae explicari.</p>
-									</div> <!-- .info-box-content -->
-								</div>
-							</div>
+				<section id="conclusion" class="hero">
+						<div class="hero-bg">
+							<div class="hero-container">
+								<div class="hero-content">
+									<div class="subsection section-body">
+										<h2 class="section-title display-4">Wrap-Up Section</h2>
 
-							<div class="col-12">
-								<div class="section-footer">
-									<div class="section-footer-content">
-										<button type="button" class="btn btn-light" name="button">Follow TSE</button>
-									</div> <!-- /.info-box-footer-> -->
+										<p>Ea offendit contentiones his, alii reprehendunt ius id. Vim ne possim honestatis eloquentiam, eu has doming ancillae explicari.</p>
+									</div>
+
+									<div class="subsection section-footer">
+										<button type="button" class="btn btn-light" name="button">Call to Action</button>
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
+				</section> <!-- /#conclusion -->
 
-					<div class="separator separator-transparent"></div>
-				</section> <!-- /#detail-section -->
+				<div id="footer-breakpoint"></div>
 
 				<!-- Featurette Section #1
 				============================================== -->
@@ -467,8 +344,6 @@ get_header(); ?>
 					</div>
 				</section> <!-- /#fullscreen-hero-closure -->
 			</div> <!-- /#wrapper -->
-
-				<div id="footer-breakpoint"></div>
 
 <?php
 get_footer();

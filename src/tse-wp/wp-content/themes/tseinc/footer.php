@@ -13,6 +13,16 @@
 
 	<!-- Affiliates Section
 	============================================== -->
+	<?php
+	/* ACF code goes here
+		if( have_rows( ... ) ) {
+			while( have_rows( ... ) ) {
+				// get the data associated with that row
+				// load each project in the format presented below
+			}
+		}
+	*/
+	?>
 	<section id="affiliates-section">
 		<div class="container">
 			<div class="row">
@@ -78,9 +88,9 @@
 								<br /><a href="#"><small class="text-muted">(555)-555-5555</small></a>
 							</p>
 						</div>
+
 					</div>
 				</div>
-				<div class="section-header"></div>
 			</div>
 			<div class="col-12 col-md-8 no-gutters">
 				<div class="footer-widget">
