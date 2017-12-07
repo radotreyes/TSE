@@ -5,11 +5,17 @@
 
 get_header(); ?>
 
+<?php
+	$hero = get_field( 'index_hero' );
+	if( $hero ) :
+?>
+
 <!-- Dynamic CSS
 ================================================ -->
+
 <style id="dynamicCSS" media="screen">
+
 	<?php
-		$hero_bg = get_field( 'fullscreen_hero_bg' );
 		if( get_field( 'home_use_parallax' ) ) {
 			echo (
 				'.hero-bg {   background-attachment: fixed;		}'
@@ -18,13 +24,14 @@ get_header(); ?>
 	?>
 
 	#fullscreenHero .hero-bg {
-		background-color: <?php echo $hero_bg['color']; ?>;
-		background-image: url( <?php echo $hero_bg['image']; ?> );
+		background-color: <?php echo $hero['color']; ?>;
+		background-image: url( <?php echo $hero['img']; ?> );
 	}
 
 	#conclusion .hero-bg {
 		background-color: <?php the_field( 'conclusion_bg_color' ) ?>;
 	}
+
 </style> <!-- /#dynamicCSS -->
 
 	<div id="primary" class="content-area">
@@ -45,34 +52,46 @@ get_header(); ?>
 										<?php
 											if( get_field( 'fullscreen_hero_use_logo' ) ) {
 												echo(
-														'<img src="' . get_field( 'fullscreen_hero_logo' ) . '">'
+														'<img src="' . $hero['logo'] . '">'
 												);
 											}
 											else {
 												echo(
-														'<h1 class="marquee">' . get_field( 'fullscreen_hero_text' ) . '</h1>'
+														'<h1 class="marquee">' . $hero['headline'] . '</h1>'
 												);
 											}
 										?>
 									</div>
 								</h1>
-								<p class="lead"><?php the_field( 'fullscreen_hero_tagline' );?></p>
+								<p class="lead"><?php echo $hero['tagline'];?></p>
 							</div> <!-- /.hero-content -->
 						</div> <!-- /.hero-container -->
 					</div> <!-- /.hero-bg -->
 				</div> <!-- /#hero .fullscreen-hero -->
 
+<?php endif; ?>
+
 				<div id="body-breakpoint"></div>
 
 				<!-- What We Do Section
 				============================================== -->
+
+<?php
+	$overview = array(
+		'meta'			=> get_field( 'index_overview' )['meta'],
+		'details'		=> get_field( 'index_overview' )['details']
+	);
+
+	if( $overview ) :
+?>
+
 				<section id="overview">
 					<div class="separator separator-transparent"></div>
 					<div class="subsection section-header">
 						<div class="container">
 							<div class="row">
 								<div class="col-12">
-									<h1 class="section-title display-4"><?php the_field( 'overview_section_title' ); ?></h1>
+									<h1 class="section-title display-4"><?php echo $overview['meta']['title']; ?></h1>
 								</div>
 							</div>
 						</div>
@@ -85,12 +104,12 @@ get_header(); ?>
 									<div class="info">
 										<div class="info-box-title">
 											<div class="info-title info-title-primary">
-												<h2><?php the_field( 'overview_title_1' ); ?></h2>
+												<h2><?php echo $overview['details']['title_1']; ?></h2>
 											</div>
 										</div> <!-- .info-box-title -->
 
 										<div class="info-box-content">
-											<p><?php the_field( 'overview_detail_1' ); ?></p>
+											<p><?php echo $overview['details']['content_1']; ?></p>
 										</div> <!-- /.info-box-content -->
 									</div>
 								</div>
@@ -99,11 +118,11 @@ get_header(); ?>
 									<div class="info">
 										<div class="info-box-title">
 											<div class="info-title info-title-secondary">
-												<h2><?php the_field( 'overview_title_2' ); ?></h2>
+												<h2><?php echo $overview['details']['title_2']; ?></h2>
 											</div>
 										</div> <!-- .info-box-title -->
 										<div class="info-box-content">
-											<p><?php the_field( 'overview_detail_2' ); ?></p>
+											<p><?php echo $overview['details']['content_2']; ?></p>
 										</div> <!-- .info-box-content -->
 									</div>
 								</div>
@@ -112,11 +131,11 @@ get_header(); ?>
 									<div class="info">
 										<div class="info-box-title">
 											<div class="info-title info-title-tertiary">
-												<h2><?php the_field( 'overview_title_3' ); ?></h2>
+												<h2><?php echo $overview['details']['title_3']; ?></h2>
 											</div>
 										</div> <!-- .info-box-title -->
 										<div class="info-box-content">
-											<p><?php the_field( 'overview_detail_3' ); ?></p>
+											<p><?php echo $overview['details']['content_3']; ?></p>
 										</div> <!-- .info-box-content -->
 									</div>
 								</div>
@@ -127,9 +146,9 @@ get_header(); ?>
 					<div class="subsection section-footer">
 						<div class="row">
 							<div class="col-12">
-								<a href="<?php the_field( 'overview_button_link' ); ?>">
+								<a href="<?php echo $overview['meta']['button_link']; ?>">
 									<button type="button" class="btn btn-dark" name="button">
-										<?php the_field( 'overview_button_detail' ); ?>
+										<?php echo $overview['meta']['button_text']; ?>
 									</button>
 								</a>
 							</div>
@@ -138,18 +157,10 @@ get_header(); ?>
 
 					<div class="separator separator-transparent"></div>
 
-				<!-- Featurette Section #1
-				============================================== -->
-				<?php
-					$title = 'hello world';
-					get_dynamic_template_part(
-						array(
-							'title' => 'foo',
-						),
-						'section',
-						'featurette_right'
-					);
-				?>
+					<!-- Featurette Section(s)
+					============================================== -->
+
+<?php endif; ?>
 
 				<!-- Highlight Carousel
 				============================================== -->
@@ -190,33 +201,46 @@ get_header(); ?>
 					</div>
 			</section> <!-- #hoverCarousel -->
 
-			<?php
-				$title = 'hello world';
-				get_dynamic_template_part(
-					array(
-						'title' => 'bar',
-					),
-					'section',
-					'featurette_left'
-				);
-			?>
+<?php
+	$features = get_field( 'index_features' );
+	if( $features ) :
+		foreach( $features as $feature ) :
+			$the_title = preg_replace( '/(\s+)/i', '', $feature['title'] );
+?>
+
+				<style id="<?php echo $the_title; ?>" media="screen">
+					<?php echo '#' . $the_title; ?> {
+						background-color: <?php echo $feature['color']; ?>;
+					  background-image: url( <?php echo $feature['img']; ?> );
+					}
+				</style>
 
 				<!-- Hero Section
 				============================================== -->
 				<section class="hero">
-					<div class="hero-bg second-highlight">
+					<div id="<?php echo $the_title; ?>" class="hero-bg">
 						<div class="hero-container">
 							<div class="hero-content">
-								<h1 class="display-2">tse Nucleus</h1>
-								<p class="lead">[cool description]</p>
-								<br><br>
-								<button type="button" class="btn btn-dark" name="button">Learn More</button>
+								<h1 class="display-2"><?php echo $feature['title']; ?></h1>
+								<br />
+								<p class="lead"><?php echo $feature['content']; ?></p>
+								<br><br />
+								<a href="<?php echo $feature['link']; ?>">
+									<button type="button" class="btn btn-dark" name="button">
+										<?php echo $feature['button']; ?>
+									</button>
+								</a>
 							</div>
 						</div>
 					</div>
 				</section> <!-- /#hero -->
 
-				<!-- Featurette Section #1
+<?php
+		endforeach;
+	endif;
+?>
+
+				<!-- Projects Section
 				============================================== -->
 				<section class="featurette">
 					<div class="separator separator-transparent"></div>

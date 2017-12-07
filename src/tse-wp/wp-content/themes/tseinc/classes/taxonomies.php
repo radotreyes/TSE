@@ -19,17 +19,13 @@ class Clients implements iTaxonomy {
     /* ON PERMALINK WRITE */
     add_filter( 'post_type_link', array( $this, 'filter_post_type_link' ), 10, 2 );
     add_filter( 'rewrite_rules_array', array( $this,'rewrite_permalink_rules' ) );
-    add_filter( 'generate_rewrite_rules', array( $this, 'fix_pagination' ), 10, 2 );
-    // register permalinks for regular and custom post types
-    // add_filter( 'post_link', 'set_permalinks', 10, 3 ); // regular
-    // add_filter( 'post_type_link', 'set_permalinks', 10, 3 ); // custom
   }
 
   function init_tax() {
     // only init if the taxonomy doesn't already exist
     if( !taxonomy_exists( 'cpt_clients' ) ) {
       register_taxonomy( 'cpt_clients', 'cpt_projects', array(
-        'hierarchical'  => false,
+        'hierarchical'  => true,
         'labels'        => array(
       	      'name'                => _x( 'Clients', 'Post Type General Name', 'tseinc' ),
       	      'singular_name'       => _x( 'Client', 'Post Type Singular Name', 'tseinc' ),
@@ -58,9 +54,11 @@ class Clients implements iTaxonomy {
   }
 
   function filter_post_type_link( $link, $post ) {
+    // if Projects is being requested, also load Clients if they exist
+    // and replace the wildcard "%client%" with the actual client in the URL
     if ( $post->post_type == 'cpt_projects' ) {
-      if ( $cats = get_the_terms( $post->ID, 'cpt_clients' ) ) {
-        $link = str_replace( '%client%', current( $cats )->slug, $link );
+      if ( $terms = get_the_terms( $post->ID, 'cpt_clients' ) ) {
+        $link = str_replace( '%client%', current( $terms )->slug, $link );
       }
     }
     return $link;
@@ -68,54 +66,13 @@ class Clients implements iTaxonomy {
 
   public function rewrite_permalink_rules( $rules ) {
     // tell wordpress how to interpret project URL structure
-    $new = array();
-    $new['projects/([^/]+)/(.+)/?$'] = 'index.php?cpt_clients=$matches[2]';
-    $new['projects/(.+)/?$'] = 'index.php?cpt_clients=$matches[1]';
-
-    return array_merge( $new, $rules ); // Ensure our rules come first
-  }
-
-  public function fix_pagination( $wp_rewrite ) {
-    /**
-     * pagination and URL mapping fix
-     * basically, WordPress rewrites the URL rules to something funny
-     * when we register our custom permalink format. using this, we are able to
-     * display the appropriate data on our new custom permalink views
-     * by appending the right queries to the URL being rewritten.
-     */
-
-     // NOTE as of this revision, still using index.php as template.
-     // so post type is being used to load objects: WILL SHOW PROJECTS,
-     // NOT clients
-      unset($wp_rewrite->rules['projects/([^/]+)/page/?([0-9]{1,})/?$']);
-      $wp_rewrite->rules = array(
-          'projects/?$' => $wp_rewrite->index . '?post_type=cpt_projects' . '?cpt_clients=' . $wp_rewrite->preg_index( 1 ),
-          'projects/page/?([0-9]{1,})/?$' => $wp_rewrite->index . '?post_type=cpt_projects&paged=' . $wp_rewrite->preg_index( 1 ),
-          'projects/([^/]+)/page/?([0-9]{1,})/?$' => $wp_rewrite->index . '?cpt_clients=' . $wp_rewrite->preg_index( 1 ) . '&paged=' . $wp_rewrite->preg_index( 2 ),
-      ) + $wp_rewrite->rules;
+    // STRUCTURE: projects/%client%/%single_post%
+    // put lowest level queries on top level of array
+    return array_merge( array(
+        'projects/(.+)/(.+)/?$' => 'index.php?cpt_clients=$matches[1]&cpt_projects=$matches[2]',
+        'projects/(.+)/?$'  => 'index.php?cpt_clients=$matches[1]'
+      ), $rules
+    ); // Ensure our rules come first
   }
 }
-
-  // function set_permalinks( $permalink, $post_id, $leavename ) {
-  //   // if the permalink doesn't contain the actor tag, don't translate anything
-  //   if( strpos( $permalink, '%client%' ) ) return $permalink;
-  //
-  //   // get post
-  //   $post = get_post( $post_id );
-  //   if( !$post ) return $permalink;
-  //
-  //   // get all terms related to the current post object
-  //   $terms = $wp_get_object_terms( $post->ID, 'client' );
-  //
-  //   // retrieve slug value of first client custom tax object linked to the post
-  //   if( !is_wp_error( $terms ) && !empty( $terms ) && is_object( $terms[0] ) {
-  //     $tasonomy_slug = $terms[0]->slug;
-  //   }
-  //   else {
-  //     $taxonomy_slug = 'client';
-  //   }
-  //
-  //   // replace the
-  // }
-
 ?>
