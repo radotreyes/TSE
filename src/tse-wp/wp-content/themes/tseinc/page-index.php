@@ -157,72 +157,94 @@ get_header(); ?>
 
 					<div class="separator separator-transparent"></div>
 
+<?php endif; ?>
+
 					<!-- Featurette Section(s)
 					============================================== -->
-
-<?php endif; ?>
+<?php
+	$details = get_field( 'index_details' );
+	if( $details ) :
+		$featurette_title_id = preg_replace( '/(\s+)/i', '', $details[0]['title'] );
+		get_dynamic_template_part( array(
+				'title_id'	=> $featurette_title_id,
+				'title'			=> $details[0]['title'],
+				'subtitle'	=> $details[0]['subtitle'],
+				'detail'		=> $details[0]['detail'],
+				'excerpt'		=> $details[0]['excerpt'],
+				'content'		=> $details[0]['content'],
+				'align'			=> $details[0]['align']
+			),
+			'section',
+			'featurette'
+		);
+?>
 
 				<!-- Highlight Carousel
 				============================================== -->
-				<section id="hoverCarousel">
-						<div class="container-fluid">
-							<div class="row">
-								<div class="col-sm-12 col-md-3">
-									<div class="row">
-										<div class="col-4 col-sm-4 col-md-12">
-											<div id="tab-1" class="tab">
-												<h1 class="lead">Power</h1>
-											</div>
-										</div>
-
-										<div class="col-4 col-sm-4 col-md-12">
-											<div id="tab-2" class="tab">
-												<h1 class="lead">Controls</h1>
-											</div>
-										</div>
-
-										<div class="col-4 col-sm-4 col-md-12">
-											<div id="tab-3" class="tab">
-												<h1 class="lead">Communications</h1>
-											</div>
-										</div>
-									</div> <!-- /.row (nested 1) -->
-								</div>
-
-								<div class="col-sm-12 col-md-9">
-									<div class="widescreen-wrapper">
-										<div id="widescreen" class="widescreen">
-											<h1 class="display-5">hover over categories to change this slideshow</h1>
-										</div>
+				<section id="placeholder" class="hero">
+						<div class="hero-bg hero-conclusion">
+							<div class="hero-container">
+								<div class="hero-content">
+									<div class="subsection section-body">
+										<h4 class="section-title display-4">
+											(placeholder for fancy dynamic element)
+										</h4>
 									</div>
 								</div>
+							</div>
+						</div>
+				</section> <!-- /#conclusion -->
 
-						</div> <!-- /.row (outer) -->
-					</div>
-			</section> <!-- #hoverCarousel -->
+<?php
+		if( count( $details ) > 1 ) {
+			$featurette_title_id = preg_replace( '/(\s+)/i', '', $details[1]['title'] );
+			get_dynamic_template_part( array(
+					'title_id'	=> $featurette_title_id,
+					'title'			=> $details[1]['title'],
+					'subtitle'	=> $details[1]['subtitle'],
+					'detail'		=> $details[1]['detail'],
+					'excerpt'		=> $details[1]['excerpt'],
+					'content'		=> $details[1]['content'],
+					'align'			=> $details[1]['align']
+				),
+				'section',
+				'featurette'
+			);
+		}
+
+	endif; /* /if( $details ) */
+?>
 
 <?php
 	$features = get_field( 'index_features' );
 	if( $features ) :
 		foreach( $features as $feature ) :
-			$the_title = preg_replace( '/(\s+)/i', '', $feature['title'] );
+			$feature_title_id = preg_replace( '/(\s+)/i', '', $feature['title'] );
 ?>
 
-				<style id="<?php echo $the_title; ?>" media="screen">
-					<?php echo '#' . $the_title; ?> {
+				<style id="<?php echo $title_id; ?>" media="screen">
+					<?php echo '#' . $feature_title_id; ?>Overlay {
 						background-color: <?php echo $feature['color']; ?>;
 					  background-image: url( <?php echo $feature['img']; ?> );
+						<?php
+							if( get_field( 'home_use_parallax' ) ) {
+								echo 'background-attachment: fixed;';
+							}
+						?>
+					}
+
+					<?php echo '#' . $feature_title_id; ?>Bg {
+						background-color: rgba(0, 0, 0, 0.5);
 					}
 				</style>
 
 				<!-- Hero Section
 				============================================== -->
-				<section class="hero">
-					<div id="<?php echo $the_title; ?>" class="hero-bg">
+				<section id="<?php echo $feature_title_id; ?>Overlay" class="hero">
+					<div id="<?php echo $feature_title_id; ?>Bg" class="hero-bg">
 						<div class="hero-container">
 							<div class="hero-content">
-								<h1 class="display-2"><?php echo $feature['title']; ?></h1>
-								<br />
+								<h2 class="section-title display-4"><?php echo $feature['title']; ?></h2>
 								<p class="lead"><?php echo $feature['content']; ?></p>
 								<br><br />
 								<a href="<?php echo $feature['link']; ?>">
@@ -254,106 +276,102 @@ get_header(); ?>
 						</div>
 					</div>
 
-					<?php
-						/* ACF code goes here
-							if( have_rows( ... ) ) {
-								while( have_rows( ... ) ) {
-									// get the data associated with that row
-									// load each project in the format presented below
-								}
-							}
-						*/
-						$query_people = new WP_Query( array(
-							'post_type'				=> 'cpt_key_people'
-						) );
 
-						echo( $query_people->have_posts() );
-						if( $query_people->have_posts() ) {
-							while( $query_people->have_posts() ) {
-								$query_people->the_post();
-								the_title();
-							}
+<?php
+	$projects = get_field( 'index_projects' );
+	if( $projects ) : // make sure the repeater field exists
+		foreach( $projects as $project ) : // loop through the repeater
+			if( $project['the_project'] ) : // make sure the post exists
+				$post = $project['the_project']; // set post variable
+
+				if( $project['thumbnail'] ) :
+					$project_title_id = preg_replace( '/(\s+)/i', '', get_the_title() );
+?>
+
+				<style id="<?php echo $project_title_id; ?>" media="screen">
+					<?php echo '#' . $project_title_id; ?> {
+						background-color: <?php echo $project['color']; ?>;
+						background-image: url( <?php echo $project['thumbnail']; ?> );
+						/*padding: 1.5em;*/
+					}
+
+					<?php echo '#' . $project_title_id; ?> > * {
+						min-height: 300px;
+					  background-position: center;
+					  background-repeat: no-repeat;
+					  background-size: cover;
+
+						padding: 1.5em;
+					  border-radius: 15px;
+						background-color: rgba(255, 241, 227, 0.85);
+					}
+
+					@media screen and ( min-width: 768px ) {
+						<?php echo '#' . $project_title_id; ?> > * {
+							background: none;
 						}
+					}
 
+				</style>
 
-						$query_projects = new WP_Query( array(
-							'post_type'				=> 'cpt_projects',
-							'posts_per_page'	=> '3',
-						) );
+<?php
+				endif;
+				setup_postdata( $post ); // override current post data
 
+				$terms = get_the_terms( get_the_ID(), 'cpt_clients' ); // retrieve current post terms
+				get_dynamic_template_part( array(
+						'subsection_align'	=> $project['align'],
+						'title_id'					=> $project_title_id,
+						'project_client'		=> implode( ', ', wp_list_pluck( $terms, 'name' ) ),
+						'project_title'			=> get_the_title(),
+						'project_loc'				=> get_field( 'project_location' ),
+						'project_desc'			=> get_the_excerpt()
+					),
+					'subsection',
+					'project'
+				);
 
-						/* Eventually remove this from a loop and allow ACF to dictate
-						 * exactly which projects to show, including some formatting */
-
-						if( $query_projects->have_posts() ) {
-							while( $query_projects->have_posts() ) {
-								$query_projects->the_post();
-								/* querying for project details... */
-								// the_terms( get_the_ID(), 'cpt_clients' )['name'];
-                //
-								// the_ID();
-								// the_title();
-								// the_content();
-								// the_excerpt();
-
-								$terms = get_the_terms( get_the_ID(), 'cpt_clients' );
-								the_terms( get_the_ID(), 'cpt_clients' );
-
-								get_dynamic_template_part( array(
-										'subsection_align'	=> 'left',
-										'project_client'		=> implode( ', ', wp_list_pluck( $terms, 'name' ) ),
-										'project_title'			=> get_the_title(),
-										'project_loc'				=> get_field( 'project_location' ),
-										'project_desc'			=> get_the_excerpt()
-									),
-									'subsection',
-									'project'
-								);
-							}
-						}
-
-						/* using ACF relational field to get specific post data */
-					// 	if( get_field( 'project_displayed' ) ) {
-					// 		$post = get_field( 'project_displayed' );
-					// 	}
-          //
-					// 	$terms = get_the_terms( get_the_ID(), 'cpt_clients' );
-          //
-					// 	get_dynamic_template_part( array(
-					// 			'subsection_align'	=> 'left',
-					// 			'project_client'		=> implode( ', ', wp_list_pluck( $terms, 'name' ) ),
-					// 			'project_title'			=> get_the_title(),
-					// 			'project_loc'				=> get_field( 'project_location' ),
-					// 			'project_desc'			=> get_the_excerpt()
-					// 		),
-					// 		'subsection',
-					// 		'project'
-					// 	);
-					// ?>
+			endif;
+		endforeach;
+		// clear post data
+		wp_reset_postdata();
+	endif;
+?>
 
 					<div class="subsection section-footer"></div>
 					<div class="separator separator-transparent"></div>
 				</section> <!-- #detail-section -->
 
+<?php
+	$conclusion = get_field( 'index_conclusion' );
+	if( $conclusion ) :
+?>
 				<!-- Call to Action Section
 				============================================== -->
 				<section id="conclusion" class="hero">
-						<div class="hero-bg">
+						<div class="hero-bg hero-conclusion">
 							<div class="hero-container">
 								<div class="hero-content">
 									<div class="subsection section-body">
-										<h2 class="section-title display-4">Wrap-Up Section</h2>
+										<h2 class="section-title display-4"><?php echo $conclusion['title']; ?></h2>
 
-										<p>Ea offendit contentiones his, alii reprehendunt ius id. Vim ne possim honestatis eloquentiam, eu has doming ancillae explicari.</p>
+										<p><?php echo $conclusion['content']; ?></p>
 									</div>
 
 									<div class="subsection section-footer">
-										<button type="button" class="btn btn-light" name="button">Call to Action</button>
+										<a href="<?php echo $conclusion['link']; ?>">
+											<button type="button" class="btn btn-light" name="button">
+												<?php echo $conclusion['button']; ?>
+											</button>
+										</a>
 									</div>
 								</div>
 							</div>
 						</div>
 				</section> <!-- /#conclusion -->
+
+<?php endif; ?>
+
 
 				<div id="footer-breakpoint"></div>
 

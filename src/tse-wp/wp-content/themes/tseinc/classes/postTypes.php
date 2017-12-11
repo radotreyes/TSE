@@ -23,9 +23,9 @@ class Projects implements iPostType {
   public function init_post() {
   	// dashboard permissions
   	register_post_type( 'cpt_projects', array(
-      'description'         => __( 'Project portfolio', 'tseinc' ),
-      'menu_icon'           => 'dashicons-book',
-      'labels'              => array(
+      'description' => __( 'Project portfolio', 'tseinc' ),
+      'menu_icon' => 'dashicons-book',
+      'labels' => array(
         'name'                => _x( 'Projects', 'Post Type General Name', 'tseinc' ),
         'singular_name'       => _x( 'Project', 'Post Type Singular Name', 'tseinc' ),
         'menu_name'           => __( 'Projects', 'tseinc' ),
@@ -41,17 +41,17 @@ class Projects implements iPostType {
         'not_found_in_trash'  => __( 'Not Found in Trash', 'tseinc' ),
     	),
       // Features this CPT supports in Post Editor
-      'supports'            => array(
-    														'title',
-                                'excerpt',
-    														'editor',
-    														'author',
-    														'thumbnail',
-    														'comments',
-    														'revisions',
+      'supports' => array(
+  			'title',
+        'excerpt',
+  			'editor',
+  			'author',
+  			'thumbnail',
+  			'comments',
+  			'revisions',
     	),
       // You can associate this CPT with a taxonomy or custom taxonomy.
-      'taxonomies'          => array( 'cpt_clients', 'post_tag' ),
+      'taxonomies' => array( 'cpt_clients', 'post_tag' ),
       /* A hierarchical CPT is like Pages and can have
       * Parent and child items. A non-hierarchical CPT
       * is like Posts.
@@ -110,25 +110,25 @@ class KeyPeople implements iPostType {
   public function init_post() {
   	// dashboard permissions
   	register_post_type( 'cpt_key_people', array(
-      'description'         => __( 'Index of key people at TSE', 'tseinc' ),
-      'menu_icon'           => 'dashicons-businessman',
-      'labels'              => array(
-        'name'                => _x( 'Key People', 'Post Type General Name', 'tseinc' ),
-        'singular_name'       => _x( 'Key Person', 'Post Type Singular Name', 'tseinc' ),
-        'menu_name'           => __( 'Key People', 'tseinc' ),
-        'parent_item_colon'   => __( 'Parent Key Person', 'tseinc' ),
-        'all_items'           => __( 'All Key People', 'tseinc' ),
-        'view_item'           => __( 'View Key Person', 'tseinc' ),
-        'add_new_item'        => __( 'New Key Person', 'tseinc' ),
-        'add_new'             => __( 'Add New', 'tseinc' ),
-        'edit_item'           => __( 'Edit Key Person', 'tseinc' ),
-        'update_item'         => __( 'Update Key Person', 'tseinc' ),
-        'search_items'        => __( 'Search Projects', 'tseinc' ),
-        'not_found'           => __( 'Not Found', 'tseinc' ),
-        'not_found_in_trash'  => __( 'Not Found in Trash', 'tseinc' ),
+      'description' => __( 'Index of key people at TSE', 'tseinc' ),
+      'menu_icon' => 'dashicons-businessman',
+      'labels' => array(
+        'name'               => _x( 'Key People', 'Post Type General Name', 'tseinc' ),
+        'singular_name'      => _x( 'Key Person', 'Post Type Singular Name', 'tseinc' ),
+        'menu_name'          => __( 'Key People', 'tseinc' ),
+        'parent_item_colon'  => __( 'Parent Key Person', 'tseinc' ),
+        'all_items'          => __( 'All Key People', 'tseinc' ),
+        'view_item'          => __( 'View Key Person', 'tseinc' ),
+        'add_new_item'       => __( 'New Key Person', 'tseinc' ),
+        'add_new'            => __( 'Add New', 'tseinc' ),
+        'edit_item'          => __( 'Edit Key Person', 'tseinc' ),
+        'update_item'        => __( 'Update Key Person', 'tseinc' ),
+        'search_items'       => __( 'Search Projects', 'tseinc' ),
+        'not_found'          => __( 'Not Found', 'tseinc' ),
+        'not_found_in_trash' => __( 'Not Found in Trash', 'tseinc' ),
     	),
       // Features this CPT supports in Post Editor
-      'supports'            => array(
+      'supports' => array(
     		'title',
         'excerpt',
     		'editor',
@@ -153,9 +153,9 @@ class KeyPeople implements iPostType {
       'exclude_from_search' => false,
       'publicly_queryable'  => true,
       'capability_type'     => 'page',
-    	'rewrite'							=> array(
-    		'slug'				=> 'people',
-    		'with_front'	=> true
+    	'rewrite' => array(
+    		'slug'       => 'people',
+    		'with_front' => true
     	)
 	  ) );
   }

@@ -23,30 +23,26 @@
   <div class="container">
     <div class="row">
       <div class="col-12 col-md-5 order-md-<?php echo $graphic_order; ?>">
-        <div class="featurette-graphic">
-          <div class="subsection subsection-sm section-header mobile-only">
-            <h1><?php echo $args['project_client']; ?></h1>
-            <h4><?php echo $args['project_title']; ?></h4>
-            <h4><small class="text-muted"><?php echo $args['project_loc']; ?></small></h4>
+        <div id="<? echo $args['title_id']; ?>" class="featurette-bg">
+          <div class="featurette">
+
+            <div id="<? echo $args['title_id']; ?>Content"  class="subsection subsection-sm section-header mobile-only">
+              <h1><?php echo $args['project_client']; ?></h1>
+              <h4><?php echo $args['project_title']; ?></h4>
+              <h4><small class="text-muted"><?php echo $args['project_loc']; ?></small></h4>
+            </div>
+
+            <div class="subsection subsection-sm section-body mobile-only">
+              <p><?php echo $args['project_desc']; ?></p>
+            </div>
+
+            <div class="subsection subsection-sm section-footer mobile-only">
+              <button type="button" class="btn btn-dark" name="button">Learn more</button>
+            </div>
+
+            <div class="subsection subsection-<?php echo $args['subsection_align']; ?> subsection-sm section-footer"></div>
+
           </div>
-
-          <div class="graphic-box-title graphic-cyan">
-            <h1>a</h1>
-          </div> <!-- .info-box-title -->
-
-          <div class="subsection subsection-sm section-body mobile-only">
-            <p><?php echo $args['project_desc']; ?></p>
-          </div>
-
-          <div class="subsection subsection-sm section-footer mobile-only">
-            <button type="button" class="btn btn-dark" name="button">Learn more</button>
-          </div>
-
-          <div class="subsection subsection-<?php echo $args['subsection_align']; ?> subsection-sm section-footer"></div>
-
-          <div class="graphic-box-content mobile-hide">
-            <p class="lead">some caption</p>
-          </div> <!-- /.info-box-content -->
         </div>
       </div>
 
