@@ -295,6 +295,12 @@ get_header(); ?>
 
 				<style id="<?php echo $project_title_id; ?>" media="screen">
 					<?php echo '#' . $project_title_id; ?> {
+						background-position: center;
+						background-repeat: no-repeat;
+						background-size: cover;
+					  border-radius: 15px;
+
+
 						background-color: <?php echo $project['color']; ?>;
 						background-image: url( <?php echo $project['thumbnail']; ?> );
 						/*padding: 1.5em;*/

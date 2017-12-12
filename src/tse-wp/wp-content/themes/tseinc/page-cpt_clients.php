@@ -98,7 +98,7 @@ foreach( $terms as $term ) :
 										<div class="row align-items-center justify-content-center">
 											<div class="col-6 col-md-3 order-<?php echo $order_1; ?>">
 												<div class="subsection-<?php echo $align_2; ?>">
-													<h2 class="display-3"><?php echo $featurette_title_pretty ?></h2>
+													<h2 class="display-2"><?php echo $featurette_title_pretty ?></h2>
 													<a href="/projects/<?php echo $term->slug ?>">
 														<button type="button" class="btn btn-ghost btn-expand-<?php echo $align_1; ?>" name="button">
 															SEE OUR WORK
