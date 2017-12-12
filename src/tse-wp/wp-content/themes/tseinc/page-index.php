@@ -64,6 +64,11 @@ get_header(); ?>
 									</div>
 								</h1>
 								<p class="lead"><?php echo $hero['tagline'];?></p>
+								<div id="indexHeroBtn" class="fixed-bottom">
+									<div class="container">
+										<i class="fa fa-angle-down" aria-hidden="true"></i>
+									</div>
+								</div>
 							</div> <!-- /.hero-content -->
 						</div> <!-- /.hero-container -->
 					</div> <!-- /.hero-bg -->
@@ -182,7 +187,7 @@ get_header(); ?>
 				<!-- Highlight Carousel
 				============================================== -->
 				<section id="placeholder" class="hero">
-						<div class="hero-bg hero-conclusion">
+						<div class="hero-bg hero-dark">
 							<div class="hero-container">
 								<div class="hero-content">
 									<div class="subsection section-body">
@@ -248,9 +253,9 @@ get_header(); ?>
 								<p class="lead"><?php echo $feature['content']; ?></p>
 								<br><br />
 								<a href="<?php echo $feature['link']; ?>">
-									<button type="button" class="btn btn-dark" name="button">
+									<div class="btn btn-ghost" name="button">
 										<?php echo $feature['button']; ?>
-									</button>
+									</div>
 								</a>
 							</div>
 						</div>
@@ -270,7 +275,7 @@ get_header(); ?>
 						<div class="container">
 							<div class="row">
 								<div class="col-12">
-									<h1 class="section-title display-4">Our Solutions</h1>
+									<h1 class="section-title display-4">OUR SOLUTIONS</h1>
 								</div>
 							</div>
 						</div>
@@ -349,7 +354,7 @@ get_header(); ?>
 				<!-- Call to Action Section
 				============================================== -->
 				<section id="conclusion" class="hero">
-						<div class="hero-bg hero-conclusion">
+						<div class="hero-bg hero-dark">
 							<div class="hero-container">
 								<div class="hero-content">
 									<div class="subsection section-body">
@@ -360,7 +365,7 @@ get_header(); ?>
 
 									<div class="subsection section-footer">
 										<a href="<?php echo $conclusion['link']; ?>">
-											<button type="button" class="btn btn-light" name="button">
+											<button type="button" class="btn btn-ghost" name="button">
 												<?php echo $conclusion['button']; ?>
 											</button>
 										</a>

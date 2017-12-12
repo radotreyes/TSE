@@ -48,25 +48,25 @@
 }
 
 @font-face {
-  font-family: 'Poppins';
-  src: url( '../fonts/Poppins/Poppins-Regular.ttf' );
+  font-family: 'BarlowSemiCondensed';
+  src: url( '../fonts/BarlowSemiCondensed/BarlowSemiCondensed-Regular.ttf' );
 }
 
 @font-face {
-  font-family: 'Poppins';
-  src: url( '../fonts/Poppins/Poppins-RegularItalic.ttf' );
+  font-family: 'BarlowSemiCondensed';
+  src: url( '../fonts/BarlowSemiCondensed/BarlowSemiCondensed-RegularItalic.ttf' );
   font-style: italic;
 }
 
 @font-face {
-  font-family: 'Poppins';
-  src: url( '../fonts/Poppins/Poppins-SemiBold.ttf' );
+  font-family: 'BarlowSemiCondensed';
+  src: url( '../fonts/BarlowSemiCondensed/BarlowSemiCondensed-SemiBold.ttf' );
   font-weight: bold;
 }
 
 @font-face {
-  font-family: 'Poppins';
-  src: url( '../fonts/Poppins/Poppins-SemiBoldItalic.ttf' );
+  font-family: 'BarlowSemiCondensed';
+  src: url( '../fonts/BarlowSemiCondensed/BarlowSemiCondensed-SemiBoldItalic.ttf' );
   font-weight: bold;
   font-style: italic;
 }
@@ -80,13 +80,17 @@ body {
   font-family: 'Raleway', sans-serif !important;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Poppins', sans-serif !important;
+h1, h2, h3, h4, h5, h6, .btn {
+  font-family: 'BarlowSemiCondensed', sans-serif !important;
 }
 
 [class^="display-"] {
-  font-family: 'Poppins', sans-serif !important;
+  font-family: 'BarlowSemiCondensed', sans-serif !important;
   font-weight: bold;
+}
+
+.marquee {
+  font-family: 'Righteous', cursive !important;
 }
 
 h1.marquee {
@@ -98,6 +102,11 @@ h1.marquee {
 
 /* # [1] Page Wrapper and Hero Components */
 /* ## [1.1] Page Wrapper */
+
+#sticky-nav {
+  display: none;
+}
+
 #wrapper {
   display: block;
 
@@ -106,6 +115,8 @@ h1.marquee {
   min-width: 100%;
   max-width: 100%;
   color: white;
+
+  overflow-x: hidden;
 }
 
 .mobile-hide {
@@ -222,6 +233,31 @@ h1.marquee {
   height: 100%;
   margin: 0 auto;
   padding: 0 20px;
+}
+
+#indexHeroBtn {
+  font-size: 2rem;
+}
+
+#indexHeroBtn i {
+  padding: 0 .5vw;
+  border-bottom: 2px solid transparent;
+
+  -webkit-transition: 0.333s ease, border-bottom 0.5s ease-in-out;
+  -moz-transition:0.333s ease, border-bottom 0.5s ease-in-out;
+  transition: 0.333s ease, border-bottom 0.5s ease-in-out;
+}
+
+#indexHeroBtn i:hover {
+  padding: 0 12.5vw;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.5);
+  text-shadow: 0px 0px 5px rgba(255, 255, 255, 0.25);
+
+  -webkit-transition: all 0.25s ease-in-out;
+  -moz-transition: all 0.25s ease-in-out;
+  transition: all 0.25s ease-in-out;
+
+  z-index: 999;
 }
 
 .fullscreen-hero-closure {
@@ -582,7 +618,7 @@ section {
   text-align: center;
 }
 
-.hero-conclusion {
+.hero-dark {
   background-color: #2F323A;
 }
 
@@ -596,7 +632,6 @@ section {
     padding: 0 0 1em;
   }
 }
-
 
 /* FOOTER */
 footer.the-footer {
@@ -651,4 +686,56 @@ footer.the-footer p.lead {
   footer.the-footer small {
     font-size: .75rem;
   }
+}
+
+.btn.btn-ghost {
+  position: relative;
+  font-size: 1.25rem;
+  background-color: transparent;
+  color: white;
+  border: 1px solid white;
+  border-radius: 5px;
+  padding: .5em 2em;
+
+  -webkit-transition: 0.333s ease .1s;
+  -moz-transition: 0.333s ease .1s;
+  transition: 0.333s ease .1s;
+}
+
+.btn.btn-ghost:hover {
+  position: relative;
+  background-color: #dbdbdb;
+  border: 1px solid #dbdbdb;
+    border-radius: 25px 25px 25px 25px;
+  color: #2F323A;
+  padding: .5em 4em;
+  text-shadow: none;
+
+  -webkit-transition:
+    0.25s ease-in-out .01s,
+    margin .25s ease .125s,
+    padding .25s ease .125s,
+    border-radius .333s ease .1825s;
+
+  -moz-transition: 0.25s
+    0.25s ease-in-out .01s,
+    margin .25s ease .125s,
+    padding .25s ease .125s,
+    border-radius .333s ease .1825s;
+
+  transition:
+    0.25s ease-in-out .01s,
+    margin .25s ease .125s,
+    padding .25s ease .125s,
+    border-radius .333s ease .1825s;
+}
+
+.btn-expand-left:hover {
+  padding: .5em 2em .5em 4em !important;
+  border-radius: 5px 50px 0px 0px !important;
+}
+
+.btn-expand-right:hover {
+  padding: .5em 4em .5em 2em !important;
+  border-radius: 50px 5px 0px 0px !important;
 }

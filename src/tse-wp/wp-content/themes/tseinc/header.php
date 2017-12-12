@@ -30,7 +30,7 @@
 		============================================== -->
 		<div id="sticky-nav" class="fixed-top navbar-wrapper">
 			<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-				<a class="navbar-brand" href="#">TSE</a>
+				<a class="navbar-brand" href="#"><span class="marquee">tse</span></a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navToggle" aria-controls="navToggle" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 				</button>
