@@ -28,7 +28,7 @@
           <div class="card">
 
             <div id="<? echo $args['title_id']; ?>Content" class="subsection subsection-sm section-header mobile-only">
-              <h1><?php echo $args['project_client']; ?></h1>
+              <h1 class="display-flex-1 display-bold"><?php echo $args['project_client']; ?></h1>
               <h4><?php echo $args['project_title']; ?></h4>
               <h4><small class="text-muted"><?php echo $args['project_loc']; ?></small></h4>
             </div>
@@ -38,7 +38,7 @@
             </div>
 
             <div class="subsection subsection-sm section-footer mobile-only">
-              <button type="button" class="btn btn-dark" name="button">LEARN MORE</button>
+              <button type="button" class="btn btn-ghost" name="button">LEARN MORE</button>
             </div>
 
             <div class="subsection subsection-<?php echo $args['subsection_align']; ?> subsection-sm section-footer"></div>
@@ -50,17 +50,21 @@
       <div class="col-12 col-md-7 mobile-hide order-md-<?php echo $detail_order; ?>">
         <div class="card card-dark card-md-split-<?php echo $align_other; ?>">
           <div class="subsection-<?php echo $args['subsection_align']; ?> subsection-sm section-header">
-            <h1><?php echo $args['project_client']; ?></h1>
-            <h4><?php echo $args['project_title']; ?></h4>
+            <h1 class="display-flex-1 display-bold"><?php echo $args['project_client']; ?></h1>
+            <h4 class="display-flex-5"><?php echo $args['project_title']; ?></h4>
             <h4><small class="text-muted"><?php echo $args['project_loc']; ?></small></h4>
           </div>
 
           <div class="subsection-<?php echo $args['subsection_align']; ?> subsection-sm section-body">
             <p><?php echo $args['project_desc']; ?></p>
+            <div class="btn-wrapper-expand-<?php echo $align_other ?>">
+
+            </div>
+            <button type="button" class="btn btn-scared btn-md-expand-<?php echo $args['subsection_align'] ?>" name="button">LEARN MORE</button>
           </div>
 
           <div class="subsection subsection-sm section-footer">
-            <button type="button" class="btn btn-light" name="button">LEARN MORE</button>
+
           </div>
         </div>
       </div>

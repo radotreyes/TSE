@@ -25,12 +25,23 @@ get_header(); ?>
 
 	#fullscreenHero .hero-bg {
 		background-color: <?php echo $hero['color']; ?>;
-		background-image: url( <?php echo $hero['img']; ?> );
 	}
 
 	#conclusion .hero-bg {
 		background-color: <?php the_field( 'conclusion_bg_color' ) ?>;
 	}
+
+	@media screen and ( min-width: 768px ) {
+		#fullscreenHero .hero-bg {
+			background-color: <?php echo $hero['color']; ?>;
+			background-image: url( <?php echo $hero['img']; ?> );
+		}
+
+		#conclusion .hero-bg {
+			background-color: <?php the_field( 'conclusion_bg_color' ) ?>;
+		}
+	}
+
 
 </style> <!-- /#dynamicCSS -->
 
@@ -96,7 +107,7 @@ get_header(); ?>
 						<div class="container">
 							<div class="row">
 								<div class="col-12">
-									<h1 class="section-title display-4"><?php echo $overview['meta']['title']; ?></h1>
+									<h1 class="section-title display-flex-2"><?php echo $overview['meta']['title']; ?></h1>
 								</div>
 							</div>
 						</div>
@@ -109,7 +120,7 @@ get_header(); ?>
 									<div class="info">
 										<div class="info-box-title">
 											<div class="info-title info-title-primary">
-												<h2><?php echo $overview['details']['title_1']; ?></h2>
+												<h1 class="display-flex-4"><?php echo $overview['details']['title_1']; ?></h1>
 											</div>
 										</div> <!-- .info-box-title -->
 
@@ -123,7 +134,7 @@ get_header(); ?>
 									<div class="info">
 										<div class="info-box-title">
 											<div class="info-title info-title-secondary">
-												<h2><?php echo $overview['details']['title_2']; ?></h2>
+												<h1 class="display-flex-4"><?php echo $overview['details']['title_2']; ?></h1>
 											</div>
 										</div> <!-- .info-box-title -->
 										<div class="info-box-content">
@@ -136,7 +147,7 @@ get_header(); ?>
 									<div class="info">
 										<div class="info-box-title">
 											<div class="info-title info-title-tertiary">
-												<h2><?php echo $overview['details']['title_3']; ?></h2>
+												<h1 class="display-flex-4"><?php echo $overview['details']['title_3']; ?></h1>
 											</div>
 										</div> <!-- .info-box-title -->
 										<div class="info-box-content">
@@ -152,7 +163,7 @@ get_header(); ?>
 						<div class="row">
 							<div class="col-12">
 								<a href="<?php echo $overview['meta']['button_link']; ?>">
-									<button type="button" class="btn btn-dark" name="button">
+									<button type="button" class="btn btn-creeper" name="button">
 										<?php echo $overview['meta']['button_text']; ?>
 									</button>
 								</a>
@@ -191,7 +202,7 @@ get_header(); ?>
 							<div class="hero-container">
 								<div class="hero-content">
 									<div class="subsection section-body">
-										<h4 class="section-title display-4">
+										<h4 class="section-title display-flex-2">
 											(placeholder for fancy dynamic element)
 										</h4>
 									</div>
@@ -230,12 +241,17 @@ get_header(); ?>
 				<style id="<?php echo $title_id; ?>" media="screen">
 					<?php echo '#' . $feature_title_id; ?>Overlay {
 						background-color: <?php echo $feature['color']; ?>;
-					  background-image: url( <?php echo $feature['img']; ?> );
-						<?php
-							if( get_field( 'home_use_parallax' ) ) {
-								echo 'background-attachment: fixed;';
-							}
-						?>
+					}
+
+					@media screen and ( min-width: 768px ) {
+						<?php echo '#' . $feature_title_id; ?>Overlay {
+							background-image: url( <?php echo $feature['img']; ?> );
+							<?php
+								if( get_field( 'home_use_parallax' ) ) {
+									echo 'background-attachment: fixed;';
+								}
+							?>
+						}
 					}
 
 					<?php echo '#' . $feature_title_id; ?>Bg {
@@ -249,9 +265,9 @@ get_header(); ?>
 					<div id="<?php echo $feature_title_id; ?>Bg" class="hero-bg">
 						<div class="hero-container">
 							<div class="hero-content">
-								<h2 class="section-title display-4"><?php echo $feature['title']; ?></h2>
+								<h2 class="section-title display-flex-2"><?php echo $feature['title']; ?></h2>
 								<p class="lead"><?php echo $feature['content']; ?></p>
-								<br><br />
+								<br>
 								<a href="<?php echo $feature['link']; ?>">
 									<div class="btn btn-ghost" name="button">
 										<?php echo $feature['button']; ?>
@@ -275,7 +291,7 @@ get_header(); ?>
 						<div class="container">
 							<div class="row">
 								<div class="col-12">
-									<h1 class="section-title display-4">OUR SOLUTIONS</h1>
+									<h1 class="section-title display-flex-2">OUR SOLUTIONS</h1>
 								</div>
 							</div>
 						</div>
@@ -311,10 +327,12 @@ get_header(); ?>
 					  background-position: center;
 					  background-repeat: no-repeat;
 					  background-size: cover;
+						color: white;
+						text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.75);
 
 						padding: 1.5em;
 					  border-radius: 15px;
-						background-color: rgba(255, 241, 227, 0.85);
+						background-color: rgba(64, 32, 0, 0.75);
 					}
 
 					@media screen and ( min-width: 768px ) {
@@ -364,7 +382,7 @@ get_header(); ?>
 							<div class="hero-container">
 								<div class="hero-content">
 									<div class="subsection section-body">
-										<h2 class="section-title display-4"><?php echo $conclusion['title']; ?></h2>
+										<h2 class="section-title display-flex-2"><?php echo $conclusion['title']; ?></h2>
 
 										<p><?php echo $conclusion['content']; ?></p>
 									</div>

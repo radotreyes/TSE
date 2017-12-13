@@ -41,7 +41,7 @@ foreach( $query as $key => $value ) {
 
 			<section class="featurette">
 				<div class="subsection section-header">
-					<h2 class="display-4 section-header">OUR CUSTOMERS</h2>
+					<h2 class="section-header display-flex-2">OUR GROWING PORTFOLIO</h2>
 				</div>
 
 				<div class="subsection section-body">
@@ -82,10 +82,13 @@ foreach( $terms as $term ) :
 
 							<?php echo '#' . $featurette_title_id; ?>Overlay {
 								width: auto;
-								min-height: 350px;
 								border-radius: 25px;
 								margin: 1em auto;
 								background-color: rgba(0, 0, 0, 0.6);
+							}
+
+							<?php echo '#' . $featurette_title_id; ?>Bg {
+								min-height: initial;
 							}
 						</style>
 
@@ -96,18 +99,20 @@ foreach( $terms as $term ) :
 								<div class="hero-container">
 									<div class="hero-content">
 										<div class="row align-items-center justify-content-center">
-											<div class="col-6 col-md-3 order-<?php echo $order_1; ?>">
-												<div class="subsection-<?php echo $align_2; ?>">
-													<h2 class="display-2"><?php echo $featurette_title_pretty ?></h2>
+											<div class="col-12 col-md-4 col-lg-3 order-<?php echo $order_1; ?>">
+												<div class="subsection subsection-md-<?php echo $align_2; ?>">
+													<h2 class="display-flex-1 display-bold"><?php echo $featurette_title_pretty ?></h2>
 													<a href="/projects/<?php echo $term->slug ?>">
-														<button type="button" class="btn btn-ghost btn-expand-<?php echo $align_1; ?>" name="button">
-															SEE OUR WORK
-														</button>
+														<div class="btn-wrapper-expand-<?php echo $align_1?>">
+															<button type="button" class="btn btn-ghost btn-md-expand-<?php echo $align_2; ?>" name="button">
+																SEE OUR WORK
+															</button>
+														</div>
 													</a>
 												</div>
 											</div>
-											<div class="col-6 col-md-3 order-<?php echo $order_2; ?>">
-												<div class="subsection-<?php echo $align_1; ?>">
+											<div class="col-12 col-md-4 col-lg-3 order-<?php echo $order_2; ?> mobile-hide">
+												<div class="subsection subsection-md-<?php echo $align_1; ?> ">
 													<?php echo $term->description ?>
 												</div>
 											</div>

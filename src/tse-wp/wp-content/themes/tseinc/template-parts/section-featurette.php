@@ -62,7 +62,7 @@
         </div>
 
         <div class="col-12 col-md-7 <?php echo $primary_order ?>">
-          <div class="featurette-detail featurette-alt">
+          <div class="featurette-detail featurette-dark">
             <div class="subsection subsection-sm section-body">
                 <?php echo $args['content'] ?>
             </div>
