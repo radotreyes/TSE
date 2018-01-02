@@ -45,18 +45,57 @@ get_header(); ?>
 if( have_posts() ) :
 	while( have_posts() ) :
 		the_post();
+
+		$project_title_id = preg_replace( '/(\s+)/i', '', get_the_title() );
 ?>
 
-							<div class="col-12 col-md-6">
-								<div class="featurette-bg">
-										<div class="subsection subsection-sm section-header"></div>
+							<style id="<?php echo $project_title_id; ?>" media="screen">
+								<?php echo '#' . $project_title_id; ?> {
+									background-position: center;
+									background-repeat: no-repeat;
+									background-size: cover;
+									border-radius: 15px;
 
-										<div class="subsection subsection-sm section-body">
-											<h1><?php the_title() ?></h1>
-											<h4><small class="text-muted"><?php echo get_field( 'project_location' ); ?></small></h4>
-										</div>
-									</div>
+									background-color: #8a8a8a;
+									background-image: url( <?php echo get_field( 'project_img' ); ?> );
+									/*padding: 1.5em;*/
+								}
+
+								<?php echo '#' . $project_title_id; ?> > * {
+									min-height: 300px;
+								  background-position: center;
+								  background-repeat: no-repeat;
+								  background-size: cover;
+									color: white;
+									text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.75);
+
+									padding: 1.5em;
+								  border-radius: 15px;
+									background-color: rgba(0, 0, 0, 0.6);
+								}
+							</style>
+
+							<div class="col-12 col-md-6">
+								<div id="<? echo $project_title_id; ?>">
+				          <div class="card">
+
+				            <div id="<? echo $project_title_id; ?>Overlay" class="subsection subsection-sm section-header">
+											<h1 class="display-flex-4 display-bold"><?php the_title() ?></h1>
+				              <h4><small class="text-muted"><?php echo get_field( 'project_location' ); ?></small></h4>
+				            </div>
+
+				            <div class="subsection subsection-sm section-body">
+				              <p><?php the_excerpt() ?></p>
+				            </div>
+
+				            <div class="subsection subsection-sm section-footer">
+				              <button type="button" class="btn btn-ghost" name="button">MORE</button>
+				            </div>
+				          </div>
+				        </div>
 							</div>
+
+
 
 <?php
 	endwhile;

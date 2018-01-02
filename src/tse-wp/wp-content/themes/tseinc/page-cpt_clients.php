@@ -74,6 +74,7 @@ foreach( $terms as $term ) :
 						<style id="<?php echo $featurette_title_id; ?>" media="screen">
 							<?php echo '#' . $featurette_title_id; ?>Bg {
 								width: auto;
+								height: 100%;
 								margin: 1em 2em;
 								border-radius: 25px;
 								background-image: url( <?php echo get_field( 'img', $term ); ?> );
@@ -82,8 +83,9 @@ foreach( $terms as $term ) :
 
 							<?php echo '#' . $featurette_title_id; ?>Overlay {
 								width: auto;
+								height: 100%;
 								border-radius: 25px;
-								margin: 1em auto;
+								padding: 3em 0;
 								background-color: rgba(0, 0, 0, 0.6);
 							}
 
