@@ -1052,12 +1052,3 @@ footer.the-footer p.lead {
     padding: 0 0 1em;
   }
 }
-
-/* ## [X.2] Separators */
-
-.stop-scrolling {
-  overflow-y: scroll;
-  overflow-x: hidden;
-
-  position: fixed;
-}

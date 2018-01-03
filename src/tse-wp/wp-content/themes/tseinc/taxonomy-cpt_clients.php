@@ -79,12 +79,11 @@ if( have_posts() ) :
 								<div id="<? echo $project_title_id; ?>">
 				          <div class="card">
 
-				            <div id="<? echo $project_title_id; ?>Overlay" class="subsection subsection-sm section-header">
-											<h1 class="display-flex-4 display-bold"><?php the_title() ?></h1>
-				              <h4><small class="text-muted"><?php echo get_field( 'project_location' ); ?></small></h4>
-				            </div>
+				            <div id="<? echo $project_title_id; ?>Overlay" class="subsection subsection-sm section-header"> </div>
 
 				            <div class="subsection subsection-sm section-body">
+											<h1 class="display-flex-4 display-bold"><?php the_title() ?></h1>
+				              <h4><small class="text-muted"><?php echo get_field( 'project_location' ); ?></small></h4>
 				              <p><?php the_excerpt() ?></p>
 				            </div>
 
@@ -94,7 +93,6 @@ if( have_posts() ) :
 				          </div>
 				        </div>
 							</div>
-
 
 
 <?php
