@@ -992,11 +992,15 @@ footer.the-footer p.lead {
 
   .btn-md-expand-left:hover {
     border-radius: 1.5px 75px 7.5px 1.5px !important;
+
+    z-index: 999;
   }
 
   .btn-md-expand-right:hover {
     margin-left: -2em !important;
     border-radius: 75px 1.5px 1.5px 7.5px !important;
+
+    z-index: 999;
   }
 }
 

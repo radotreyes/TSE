@@ -67,14 +67,18 @@ foreach( $terms as $term ) :
 
 		$align_2 = $toggle ? 'left' : 'right';
 		$align_1 = $toggle ? 'right' : 'left';
+		$align_short_1 = $toggle ? 'r' : 'l';
+		$align_short_2 = $toggle ? 'l' : 'r';
 		$order_2 = $toggle ? 1 : 2;
 		$order_1 = $toggle ? 2 : 1;
 ?>
 
 						<style id="<?php echo $featurette_title_id; ?>" media="screen">
+
 							<?php echo '#' . $featurette_title_id; ?>Bg {
 								width: auto;
 								height: 100%;
+									min-height: initial;
 								margin: 1em 2em;
 								border-radius: 25px;
 								background-image: url( <?php echo get_field( 'img', $term ); ?> );
@@ -89,8 +93,16 @@ foreach( $terms as $term ) :
 								background-color: rgba(0, 0, 0, 0.6);
 							}
 
-							<?php echo '#' . $featurette_title_id; ?>Bg {
-								min-height: initial;
+							@media screen and ( min-width: 768px ) {
+								<?php echo '#' . $featurette_title_id; ?>Description {
+									padding-<?php echo $align_2 ?>: 10vw;
+								}
+							}
+
+							@media screen and ( min-width: 1200px ) {
+								<?php echo '#' . $featurette_title_id; ?>Description {
+									padding-<?php echo $align_2 ?>: 22.5vw;
+								}
 							}
 						</style>
 
@@ -98,23 +110,23 @@ foreach( $terms as $term ) :
 						============================================== -->
 						<div id="<?php echo $featurette_title_id; ?>Bg" class="hero hero-sm">
 							<div id="<?php echo $featurette_title_id; ?>Overlay" class="hero-bg">
-								<div class="hero-container">
+								<div id="<?php echo $featurette_title_id; ?>" class="hero-container">
 									<div class="hero-content">
 										<div class="row align-items-center justify-content-center">
-											<div class="col-12 col-md-4 col-lg-3 order-<?php echo $order_1; ?>">
+											<div class="col-12 col-md-5 order-<?php echo $order_1; ?>">
 												<div class="subsection subsection-md-<?php echo $align_2; ?>">
-													<h2 class="display-flex-1 display-bold"><?php echo $featurette_title_pretty ?></h2>
+													<h2 class="display-flex-2 display-bold text-md-<?php echo $align_2; ?>"><?php echo $featurette_title_pretty ?></h2>
 													<a href="/projects/<?php echo $term->slug ?>">
 														<div class="btn-wrapper-expand-<?php echo $align_1?>">
-															<button type="button" class="btn btn-ghost btn-md-expand-<?php echo $align_2; ?>" name="button">
+															<button type="button" class="btn btn-ghost btn-md-expand-<?php echo $align_2; ?> mx-2" name="button">
 																SEE OUR WORK
 															</button>
 														</div>
 													</a>
 												</div>
 											</div>
-											<div class="col-12 col-md-4 col-lg-3 order-<?php echo $order_2; ?> mobile-hide">
-												<div class="subsection subsection-md-<?php echo $align_1; ?> ">
+											<div class="col-12 col-md-7 order-<?php echo $order_2; ?> mobile-hide">
+												<div id="<?php echo $featurette_title_id; ?>Description" class="subsection subsection-md-<?php echo $align_1; ?> ">
 													<?php echo $term->description ?>
 												</div>
 											</div>
