@@ -104,7 +104,6 @@ class KeyPeople implements iPostType {
   public function __construct() {
     /* ON INIT */
     add_action( 'init', array( $this, 'init_post' ), 0 );
-
   }
 
   public function init_post() {

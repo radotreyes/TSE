@@ -6,16 +6,14 @@
 get_header(); ?>
 
 <?php
-
-$query = get_queried_object();
-// DEBUG
-foreach( $query as $key => $value ) {
-	echo $key . ' => ' . $value;
-	echo '<br />';
-
-}
-
+	$query = get_queried_object();
+	// DEBUG
+	foreach( $query as $key => $value ) {
+		echo $key . ' => ' . $value;
+		echo '<br />';
+	}
 ?>
+
 
 	<div id="primary" class="content-area">
 		<main id="main" class="site-main">
@@ -74,7 +72,6 @@ foreach( $terms as $term ) :
 ?>
 
 						<style id="<?php echo $featurette_title_id; ?>" media="screen">
-
 							<?php echo '#' . $featurette_title_id; ?>Bg {
 								width: auto;
 								height: 100%;
@@ -115,7 +112,7 @@ foreach( $terms as $term ) :
 										<div class="row align-items-center justify-content-center">
 											<div class="col-12 col-md-5 order-<?php echo $order_1; ?>">
 												<div class="subsection subsection-md-<?php echo $align_2; ?>">
-													<h2 class="display-flex-2 display-bold text-md-<?php echo $align_2; ?>"><?php echo $featurette_title_pretty ?></h2>
+													<h2 class="display-flex-2 display-bold text-md-<?php echo $align_2; ?> p<?php echo $align_short_2; ?>-2"><?php echo $featurette_title_pretty ?></h2>
 													<a href="/projects/<?php echo $term->slug ?>">
 														<div class="btn-wrapper-expand-<?php echo $align_1?>">
 															<button type="button" class="btn btn-ghost btn-md-expand-<?php echo $align_2; ?> mx-2" name="button">
